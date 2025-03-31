@@ -13,6 +13,7 @@
     $_SESSION['reg'] = false;
     include_once('templates/user.php');
     include_once('templates/menu.php');
+    #echo "HELLOWORLD!!"
     #
 
     ?>
