@@ -24,6 +24,8 @@ $ct2 = 'CREATE TABLE IF NOT EXISTS pages(
     pstats text,
     foreign key (user_id) references users(id) on delete cascade) default charset="utf8mb4"';
 
+#$ct3 = 'INSERT INTO users (id,avatar) VALUES (0, LOAD_FILE(./opt/lampp/apache2/htdocs/NOTES/img))';
+
 
 mysqli_query($link, $ct1);
 $err = mysqli_errno($link);
@@ -38,6 +40,13 @@ if ($err) {
     echo 'Error code for pages:' . $err . '<br>';
     exit();
 }
+
+// mysqli_query($link, $ct2);
+// $err = mysqli_errno($link);
+// if ($err) {
+//     echo 'Error code for users:' . $err . '<br>';
+//     exit();
+// }
 
 
 
