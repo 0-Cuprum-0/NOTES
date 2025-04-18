@@ -1,42 +1,60 @@
+<?php
+session_start();
+
+
+// $_SESSION['debug'] = 'this is debug!';
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
+$_SESSION['reg'] = 0;
+// if (!isset($_SESSION['reg'])) { IT DOESNT WORK
+//     $_SESSION['reg'] = 0;
+// }
+include_once("pages/functions.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
+    <title>notes</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOTES</title>
+    <link href="css/styles.css" rel="stylesheet">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <?php
-    session_start();
-    $link = connect();
-    $_SESSION['reg'] = true;
-    include_once('templates/user.php');
-    include_once('templates/menu.php');
 
 
-    $sel = 'SELECT * FROM users
-        WHERE id=1 ';
-    $res = mysqli_query($link, $sel);
-    echo '<table >';
-    while ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
-        echo '<tr>';
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-sm-2 d-flex flex-column align-items-center justify-content-center p-0   ">
 
-        $img = base64_encode("avatar");
-        echo '<td><img height="100px" src="data:image/jpeg; base64,' . $img . '"></td>';
-    }
-    mysqli_free_result($res);
-    echo '</table>';
+                <div class="d-flex w-100  p-0 justify-content-center" style="height:20%;"><?php include_once('pages/user.php'); ?></div>
+                <div class="w-100 h-50 p-0">Flex item 2</div>
+                <div class="w-100 p-0" style="height:40%;">Flex item 3</div>
 
 
+            </div>
+            <div class="col-sm-10 d-flex align-items-center justify-content-center ">
+                <div>4</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 
 
-    #echo "HELLOWORLD!!"
-    #
 
-    ?>
 
-</body>
+
 
 </html>
