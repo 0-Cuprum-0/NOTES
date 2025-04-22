@@ -44,7 +44,16 @@ include_once("pages/functions.php");
 
             </div>
             <div class="col-sm-10 d-flex align-items-center justify-content-center ">
-                <div>4</div>
+                <?php
+                if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                    if ($page == 1)
+                        include_once("pages/register.php");
+                    if ($page == 2)
+                        include_once("pages/login.php");
+                }
+                ?>
+                <!-- <div>4</div> -->
             </div>
         </div>
     </div>

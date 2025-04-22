@@ -27,14 +27,25 @@ function register($name, $pass, $email)
         echo "<h3><span style='color: red;'>Values length error</span></h3>";
         return false;
     }
-    $ins = 'INSERT INTO users (login, pass, email, roleid)
-            VALUES ("' . $name . '","' . md5($pass) . '","' . $email . '", 2)';
+    $ins = 'INSERT INTO users (login, pass, email)
+            VALUES ("' . $name . '","' . md5($pass) . '","' . $email . '")';
     $link = connect();
-    mysqli_query($link, $ins);
+    try {
+        mysqli_query($link, $ins);
+    } catch (mysqli_sql_exception $e) {
+        $errno = $e->getCode();
+
+        if ($errno == 1062) {
+            echo "<h3><span style='color: red;'></span></h3>"; #??????????????????
+        } else {
+            echo "<h3><span style='color: red;'>Error code: " . $errno . "!</span></h3>";
+        }
+    }
+
     $err = mysqli_errno($link);
     if ($err) {
         if ($err == 1062) {
-            echo "<h3><span style='color: red;'>User is already exists!</span></h3>";
+            echo "<h3><span style='color: red;'>User already exists!</span></h3>";
         } else {
             echo "<h3><span style='color: red;'>Error code: " . $err . "!</span></h3>";
         }
@@ -44,6 +55,7 @@ function register($name, $pass, $email)
 }
 function login($name, $pass)
 {
+    $link = connect();
     $name = trim(htmlspecialchars($name));
     $pass = trim(htmlspecialchars($pass));
     if ($name == "" || $pass == "") {
@@ -56,6 +68,10 @@ function login($name, $pass)
     ) {
         echo "<h3><span style='color:red;'>Value Must Be Between 5 and 15!</span></h3>";
         return false;
+    } else {
+        $a = mysqli_query($link, 'SELECT * FROM users WHERE pass = $pass ORDER BY pass');
+        if ($a) {
+        }
     }
 }
 
