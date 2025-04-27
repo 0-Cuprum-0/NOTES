@@ -29,6 +29,7 @@ function register($name, $pass, $email)
     }
     $ins = 'INSERT INTO users (login, pass, email)
             VALUES ("' . $name . '","' . md5($pass) . '","' . $email . '")';
+    $_SESSION['reg'] = 1;
     $link = connect();
     try {
         mysqli_query($link, $ins);
@@ -68,10 +69,50 @@ function login($name, $pass)
     ) {
         echo "<h3><span style='color:red;'>Value Must Be Between 5 and 15!</span></h3>";
         return false;
+    }
+    $sel = 'SELECT * FROM users 
+            WHERE login="' . $name . '" and pass="' . md5($pass) . '"';
+    $res = mysqli_query($link, $sel);
+    if ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
+        $_SESSION['ruser'] = $name;
+        // $_SESSION['reg'] = 1;
+
+
+        return true;
     } else {
-        $a = mysqli_query($link, 'SELECT * FROM users WHERE pass = $pass ORDER BY pass');
-        if ($a) {
-        }
+        echo "<h3><span style='color: red;'>No Such User!</span></h3>";
+        return false;
+    }
+}
+function newlogin($pass, $newlogin)
+{
+    $link = connect();
+    $newname = trim(htmlspecialchars($newlogin));
+    $pass = trim(htmlspecialchars($pass));
+    if ($newname == "" || $pass == "") {
+        echo "<h3><span style='color:red;'>Fill All Required Fields</span></h3>";
+        return false;
+    }
+    if (
+        strlen($newname) < 5 || strlen($newname) > 15 ||
+        strlen($pass) < 5 || strlen($pass) > 15
+    ) {
+        echo "<h3><span style='color:red;'>Value Must Be Between 5 and 15!</span></h3>";
+        return false;
+    }
+    $sel = 'UPDATE users 
+            SET login = "' . $newname . '"
+            WHERE login="' . $_SESSION['ruser'] . '" and pass="' . md5($pass) . '"';
+    $res = mysqli_query($link, $sel);
+    if ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
+
+        // $_SESSION['reg'] = 1;
+
+
+        return true;
+    } else {
+        echo "<h3><span style='color: red;'>No Such User!</span></h3>";
+        return false;
     }
 }
 

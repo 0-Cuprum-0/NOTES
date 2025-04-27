@@ -8,8 +8,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+if (!isset($_SESSION['reg'])) {
+    $_SESSION['reg'] = 0;
+}
 
-$_SESSION['reg'] = 0;
+// $_SESSION['reg'] = 0;
 // if (!isset($_SESSION['reg'])) { IT DOESNT WORK
 //     $_SESSION['reg'] = 0;
 // }
@@ -39,27 +42,30 @@ include_once("pages/functions.php");
 
                 <div class="d-flex w-100  p-0 justify-content-center" style="height:20%;"><?php include_once('pages/user.php'); ?></div>
                 <div class="w-100 h-50 p-0">Flex item 2</div>
-                <div class="w-100 p-0" style="height:40%;">Flex item 3</div>
+                <div class="w-100 p-0" style="height:40%;"><a href="index.php?page=3" style="text-decoration: none;"><img width="55" height="55" src="images/settings.png" alt="settings button" /></a></div>
 
 
             </div>
-            <div class="col-sm-10 d-flex align-items-center justify-content-center ">
-                <?php
-                if (isset($_GET['page'])) {
-                    $page = $_GET['page'];
-                    if ($page == 1)
-                        include_once("pages/register.php");
-                    if ($page == 2)
-                        include_once("pages/login.php");
-                }
-                ?>
-                <!-- <div>4</div> -->
+            <div class="col-sm-10 d-flex pt-10 align-items-center justify-content-center ">
+                <div class="row">
+                    <?php
+                    if (isset($_GET['page'])) {
+                        $page = $_GET['page'];
+                        if ($page == 1)
+                            include_once("pages/register.php");
+                        if ($page == 2)
+                            include_once("pages/login.php");
+                        if ($page == 3)
+                            include_once("pages/settings.php");
+                    }
+                    ?>
+                    <!-- <div>4</div> -->
+                </div>
             </div>
         </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 
 
 
