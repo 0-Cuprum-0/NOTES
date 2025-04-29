@@ -1,18 +1,20 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <h1 class="p-0 m-0">Settings</h1>
 <br class="p-0 m-0">
 <h3 class="p-0 m-0 mt-3">Account</h3>
 <p class="p-0 m-0 mt-3"> You are <?php
                                     if ($_SESSION['reg'] == 0) {
-                                        echo "not";
+                                        echo "not registered";
                                     } else {
-                                        echo "";
-                                    }
-                                    ?> registered as <?php echo $_SESSION['ruser'] ?> that means that you have<?php ?> notes to create left</p>
+                                        echo "registered";
+                                    ?> as <?php echo $_SESSION['ruser'] ?> that means that you have<?php ?> notes to create left</p><?php
+                                                                                                                                } ?>
 
 <p class="p-0 m-0 mt-3">If you want to change your info, please enter your password here:</p>
 
 <?php
 $link = connect();
+
 
 if (!isset($_POST['newbtn'])) {
 ?>
@@ -50,15 +52,83 @@ if (!isset($_POST['newbtn'])) {
 
 <?php
 } else {
-    if (newlogin($_POST['pass'], $_POST['newlog'])) {
-        echo "<h3><span style='color: green;'>You've changed your login!</span></h3>";
+    if (isset($_POST['pass']) and isset($_POST['newlog'])) {
+        if (newlogin($_POST['pass'], $_POST['newlog'])) {
+            echo "<h3><span style='color: green;'>You've changed your login!</span></h3>";
+            header('Location: index.php');
+            exit();
+        }
     }
-}
-// echo $_POST['pass']; 
-?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+    if (isset($_POST['pass']) and isset($_POST['newpass'])) {
+        if (newpassword($_POST['pass'], $_POST['newpass'])) {
+            echo "<h3><span style='color: green;'>You've changed your password!</span></h3>";
+            header('Location: index.php');
+            exit();
+        }
+    }
+    if (isset($_POST['pass']) and isset($_POST['newpass']) and isset($_POST['newlog'])) {
+        header('Location: index.php');
+        exit();
+        echo "You cant change them both at one time";
+    }
+} ?>
 
 <?php
-// echo $_SESSION['reg'], $_SESSION['ruser'];
+if (!isset($_POST['logout'])) {
+?>
+    <script>
+        function confirmm(event) {
+            event.preventDefault();
+
+
+            const Toast = Swal.mixin({
+                toast: true,
+                showConfirmButton: true,
+                showCancelButton: true,
+                confirmButtonText: "Log out",
+                confirmButtonColor: '#7E5A9B',
+            });
+
+            Toast.fire({
+                icon: "warning",
+                title: "Are you sure you want to log out?"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    console.log("Logging out...");
+
+                    document.getElementById("myForm").submit();
+                }
+            });
+        }
+    </script>
+    <form action="index.php?page=3" id="myForm" method="POST">
+        <div class="form-group">
+            <input type="hidden" name="logout" value="1">
+            <button onclick="confirmm(event)" type="button" class="btn btn-outline-light mt-3">Log out</button>
+        </div>
+
+
+
+    <?php
+
+}
+if (isset($_POST['logout'])) {
+    ?><script>
+            console.log("SUBMITTEDDDDD")
+        </script>
+    <?php
+
+    $_SESSION['reg'] = 0;
+    unset($_SESSION['ruser']);
+    header('Location: index.php');
+    exit();
+}
+
+
+    ?>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+
+    <?php

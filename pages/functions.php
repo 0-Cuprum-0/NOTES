@@ -100,20 +100,80 @@ function newlogin($pass, $newlogin)
         echo "<h3><span style='color:red;'>Value Must Be Between 5 and 15!</span></h3>";
         return false;
     }
+    $sel = 'SELECT * FROM users 
+            WHERE login="' . $newname . '"';
+    $res = mysqli_query($link, $sel);
+    if ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
+        if ($row[1] == $newname) {
+            echo "There is already login like this one in use)";
+            return false;
+        }
+    }
+    $sel = 'SELECT * FROM users 
+            WHERE login="' . $_SESSION['ruser'] . '"';
+    $res = mysqli_query($link, $sel);
+    if ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
+        if ($row[2] != md5($pass)) {
+            echo "Not this password";
+            return false;
+        }
+    }
+
+
+
     $sel = 'UPDATE users 
             SET login = "' . $newname . '"
             WHERE login="' . $_SESSION['ruser'] . '" and pass="' . md5($pass) . '"';
     $res = mysqli_query($link, $sel);
-    if ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
+    // echo $res, $_SESSION['ruser'];
+    // echo "can be changed ";
+    $_SESSION['ruser'] = $newname;
+    return true;
 
-        // $_SESSION['reg'] = 1;
 
 
-        return true;
-    } else {
-        echo "<h3><span style='color: red;'>No Such User!</span></h3>";
+    // } else {
+    //     echo "<h3><span style='color: red;'>No Such User!</span></h3>";
+    //     return false;
+    // }
+}
+function newpassword($pass, $newpass)
+{
+    $link = connect();
+    $newname = trim(htmlspecialchars($newpass));
+    $pass = trim(htmlspecialchars($pass));
+    if ($newname == "" || $pass == "") {
+        echo "<h3><span style='color:red;'>Fill All Required Fields</span></h3>";
         return false;
     }
+    if (
+        strlen($newname) < 5 || strlen($newname) > 15 ||
+        strlen($pass) < 5 || strlen($pass) > 15
+    ) {
+        echo "<h3><span style='color:red;'>Value Must Be Between 5 and 15!</span></h3>";
+        return false;
+    }
+
+    $sel = 'SELECT * FROM users 
+            WHERE login="' . $_SESSION['ruser'] . '"';
+    $res = mysqli_query($link, $sel);
+    if ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
+        if ($row[2] != md5($pass)) {
+            echo "Not this password";
+            return false;
+        }
+    }
+
+
+
+    $sel = 'UPDATE users 
+            SET pass = "' . md5($newname) . '"
+            WHERE login="' . $_SESSION['ruser'] . '" and pass="' . md5($pass) . '"';
+    $res = mysqli_query($link, $sel);
+    // echo $res, $_SESSION['ruser'];
+    // echo "can be changed ";
+
+    return true;
 }
 
 
