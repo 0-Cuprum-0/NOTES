@@ -18,13 +18,13 @@ $link = connect();
 
 if (!isset($_POST['newbtn'])) {
 ?>
-    <form action="index.php?page=3" method="POST">
+    <form action="index.php?page=3" class="p-0 h-50" method="POST">
         <div class="form-group">
             <input type="text" class="form-control mt-3 w-50" name="pass">
         </div>
 
 
-        <div class="row h-100">
+        <div class="row h-25 m-0">
             <div class="col-sm-4 d-flex flex-column  justify-content-center p-0 me-5 ">
 
                 <div class="form-group">
@@ -44,10 +44,12 @@ if (!isset($_POST['newbtn'])) {
 
                 </div>
             </div>
-            <button type="submit" class="btn btn-outline-light mt-3" name=" newbtn">Confirm changes</button>
+        </div>
+        <div class="d-flex justify-content-start mt-2">
+            <button type="submit" class="btn btn-outline-light w-50" name="newbtn">Confirm changes</button>
+        </div>
 
     </form>
-
 
 
 <?php
@@ -102,7 +104,7 @@ if (!isset($_POST['logout'])) {
             });
         }
     </script>
-    <form action="index.php?page=3" id="myForm" method="POST">
+    <form action="index.php?page=3" class="p-0" id="myForm" method="POST">
         <div class="form-group">
             <input type="hidden" name="logout" value="1">
             <button onclick="confirmm(event)" type="button" class="btn btn-outline-light mt-3">Log out</button>

@@ -41,13 +41,19 @@ include_once("pages/functions.php");
             <div class="col-sm-2 d-flex flex-column align-items-center justify-content-center p-0   ">
 
                 <div class="d-flex w-100  p-0 justify-content-center" style="height:20%;"><?php include_once('pages/user.php'); ?></div>
-                <div class="w-100 h-50 p-0">Flex item 2</div>
-                <div class="w-100 p-0" style="height:40%;"><a href="index.php?page=3" style="text-decoration: none;"><img width="55" height="55" src="images/settings.png" alt="settings button" /></a></div>
+                <div class="w-100 h-75 p-0 justify-content-center d-flex p-0">
+                    <?php include_once('pages/menu.php'); ?>
+                </div>
+                <div class="w-100 p-0" style="height:40%;">
+                    <a href="index.php?page=3" style="text-decoration: none;">
+                        <img class="m-0 p-0" width="55" height="55" src="images/settings.png" alt="settings button" />
+                    </a>
+                </div>
 
 
             </div>
             <div class="col-sm-10 d-flex pt-10 align-items-center justify-content-center ">
-                <div class="row">
+                <div class="row w-100 h-100 m-20">
                     <?php
                     if (isset($_GET['page'])) {
                         $page = $_GET['page'];
