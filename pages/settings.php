@@ -1,7 +1,12 @@
+<?php
+$_SESSION['title'] = 'Settings';
+?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<h1 class="p-0 m-0">Settings</h1>
+<div class="w-100  p-0  d-flex m-0" style="height:100px;">
+    <h1 class="p-0 my-auto">Settings</h1>
+</div>
 <br class="p-0 m-0">
-<h3 class="p-0 m-0 mt-3">Account</h3>
+<h3 class="p-0 m-0">Account</h3>
 <p class="p-0 m-0 mt-3"> You are <?php
                                     if ($_SESSION['reg'] == 0) {
                                         echo "not registered";
@@ -18,13 +23,13 @@ $link = connect();
 
 if (!isset($_POST['newbtn'])) {
 ?>
-    <form action="index.php?page=3" class="p-0 h-50" method="POST">
+    <form action="index.php?page=3" class="p-0 m-0" method="POST" style="height:200px;">
         <div class="form-group">
-            <input type="text" class="form-control mt-3 w-50" name="pass">
+            <input type="text" class="form-control my-3 w-50" name="pass">
         </div>
 
 
-        <div class="row h-25 m-0">
+        <div class="row m-0">
             <div class="col-sm-4 d-flex flex-column  justify-content-center p-0 me-5 ">
 
                 <div class="form-group">
@@ -45,7 +50,7 @@ if (!isset($_POST['newbtn'])) {
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-start mt-2">
+        <div class="d-flex justify-content-start mt-4">
             <button type="submit" class="btn btn-outline-light w-50" name="newbtn">Confirm changes</button>
         </div>
 

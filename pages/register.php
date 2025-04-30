@@ -1,4 +1,9 @@
+<div class="w-100  p-0  d-flex m-0" style="height:100px;">
+    <h1 class="p-0 my-auto">Registration</h1>
+</div>
 <?php
+
+
 $link = connect();
 
 if (!isset($_POST['regbtn'])) {
