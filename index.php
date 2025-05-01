@@ -70,6 +70,8 @@ include_once("pages/functions.php");
                                 include_once("pages/login.php");
                             if ($page == 3)
                                 include_once("pages/settings.php");
+                            if ($page == 4)
+                                include_once("pages/redaction.php");
                         }
                         ?>
                         <!-- <div>4</div> -->

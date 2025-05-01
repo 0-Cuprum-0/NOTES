@@ -175,6 +175,10 @@ function newpassword($pass, $newpass)
 
     return true;
 }
+class Note
+{
+    public $title;
+}
 
 
 ?>
