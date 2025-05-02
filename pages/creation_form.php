@@ -19,9 +19,15 @@ include_once('pages/functions.php');
 <?php
 
 if (isset($_POST['createbtn'])) {
-    $note = new Note($_POST['title']); #может сразу инициализировать с параметрами из пост?
-    $note->set_title($_POST['title']);
-    print_r($note);
-    // echo "fdjlkevnmjlkfevnjlkfem";
+    if (!isset($_POST['title'])) { #######################################################
+        $note = new Note($_POST['title']); #может сразу инициализировать с параметрами из пост?
+        $note->create_note($_POST['title']);
+        header('index.php?page=<?= $page ?>');
+        exit();
+        // echo "fdjlkevnmjlkfevnjlkfem";
+        // print_r($note);
+    } else {
+        echo "<h3>SET NAME!</h3>";
+    }
 }
 ?>

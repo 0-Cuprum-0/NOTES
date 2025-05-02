@@ -73,9 +73,15 @@ function login($name, $pass)
     $sel = 'SELECT * FROM users 
             WHERE login="' . $name . '" and pass="' . md5($pass) . '"';
     $res = mysqli_query($link, $sel);
+
     if ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
+        $id = $row['0'];
         $_SESSION['ruser'] = $name;
         // $_SESSION['reg'] = 1;
+        unset($_SESSION['id']);
+        if (!isset($_SESSION['id'])) {
+            $_SESSION['id'] = $id;
+        }
 
 
         return true;
@@ -86,6 +92,7 @@ function login($name, $pass)
 }
 function newlogin($pass, $newlogin)
 {
+    echo "HELLO";
     $link = connect();
     $newname = trim(htmlspecialchars($newlogin));
     $pass = trim(htmlspecialchars($pass));
@@ -125,9 +132,10 @@ function newlogin($pass, $newlogin)
             SET login = "' . $newname . '"
             WHERE login="' . $_SESSION['ruser'] . '" and pass="' . md5($pass) . '"';
     $res = mysqli_query($link, $sel);
-    // echo $res, $_SESSION['ruser'];
-    // echo "can be changed ";
     $_SESSION['ruser'] = $newname;
+
+
+
     return true;
 
 
@@ -179,13 +187,24 @@ class Note
 
 {
     public $title;
-    function set_title($name)
+    function create_note()
     {
         $link = connect();
-        $this->title  = $name;
+        // $this->title  = $name;
         $res = 'INSERT INTO pages (page_name)
-            VALUES ("' . $name . '")';
-        $rel = mysqli_query($link, $res);
+            VALUES ("' . $this->title . '")';
+        mysqli_query($link, $res);
+
+        if (isset($_SESSION['id'])) {
+            $sel = 'UPDATE pages 
+            SET user_id = "' . $_SESSION['id'] . '"
+            WHERE page_name="' . $this->title . '"';
+            $res = mysqli_query($link, $sel);
+        }
+        function show_note()
+        {
+            include_once('pages/built.php');
+        }
     }
 }
 

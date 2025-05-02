@@ -2,6 +2,9 @@
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 }
+if (!isset($_GET['page'])) {
+    $page = 3;
+}
 ?>
 <div class=" w-100">
     <form method="POST" class="input-group mx-auto mt-3 mb-5" style="height: 20px;">
@@ -34,6 +37,7 @@ if (isset($_GET['page'])) {
     ?>
 
     <div class="d-flex align-items-start ">
+
         <!-- сборка заметки -->
 
     </div>

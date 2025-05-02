@@ -11,6 +11,18 @@ error_reporting(E_ALL);
 if (!isset($_SESSION['reg'])) {
     $_SESSION['reg'] = 0;
 }
+if (!isset($_SESSION['id'])) {
+    $_SESSION['id'] = null;
+}
+if (!isset($_SESSION['ruser'])) {
+    $_SESSION['ruser'] = null;
+}
+if (!isset($_SESSION['num'])) {
+    $_SESSION['num'] = 3;
+}
+if ($_SESSION['reg'] == 1) {
+    $_SESSION['num'] = 25;
+}
 // if (!isset($_SESSION['title'])) {
 // //     $_SESSION['title'] = 'Notes';
 // // }

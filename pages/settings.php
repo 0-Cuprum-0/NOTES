@@ -7,6 +7,7 @@ if (isset($_POST['logout'])) {
 
     $_SESSION['reg'] = 0;
     unset($_SESSION['ruser']);
+    unset($_SESSION['id']);
     header('Location: index.php');
     exit();
 }
@@ -23,8 +24,8 @@ $_SESSION['title'] = 'Settings';
                                         echo "not registered";
                                     } else {
                                         echo "registered";
-                                    ?> as <?php echo $_SESSION['ruser'] ?> that means that you have<?php ?> notes to create left</p><?php
-                                                                                                                                } ?>
+                                    ?> as <?php echo $_SESSION['ruser'] ?> that means that you have <?php echo $_SESSION['num']; ?> notes to create left</p><?php
+                                                                                                                                                        } ?>
 
 <p class="p-0 m-0 mt-3">If you want to change your info, please enter your password here:</p>
 
@@ -70,24 +71,24 @@ if (!isset($_POST['newbtn'])) {
 
 <?php
 } else {
-    if (isset($_POST['pass']) and isset($_POST['newlog'])) {
+    if (isset($_POST['pass']) && isset($_POST['newlog']) && !isset($_POST['newpass'])) {
         if (newlogin($_POST['pass'], $_POST['newlog'])) {
+            header('Location: index.php?page=3');
             echo "<h3><span style='color: green;'>You've changed your login!</span></h3>";
-            header('Location: index.php');
             exit();
         }
     }
-    if (isset($_POST['pass']) and isset($_POST['newpass'])) {
+    if (isset($_POST['pass']) && isset($_POST['newpass']) && !isset($_POST['newlog'])) {
         if (newpassword($_POST['pass'], $_POST['newpass'])) {
+            header('Location: index.php?page=3');
             echo "<h3><span style='color: green;'>You've changed your password!</span></h3>";
-            header('Location: index.php');
             exit();
         }
     }
-    if (isset($_POST['pass']) and isset($_POST['newpass']) and isset($_POST['newlog'])) {
-        header('Location: index.php');
-        exit();
+    if (isset($_POST['pass']) && isset($_POST['newpass']) && isset($_POST['newlog'])) {
+        header('Location: index.php?page=3');
         echo "You cant change them both at one time";
+        exit();
     }
 } ?>
 
@@ -129,7 +130,7 @@ if (!isset($_POST['logout'])) {
 
 
     <?php
-
+    // echo $_SESSION['id'];
 }
 
 
