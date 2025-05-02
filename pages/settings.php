@@ -1,4 +1,15 @@
 <?php
+if (isset($_POST['logout'])) {
+?><script>
+        console.log("SUBMITTEDDDDD")
+    </script>
+<?php
+
+    $_SESSION['reg'] = 0;
+    unset($_SESSION['ruser']);
+    header('Location: index.php');
+    exit();
+}
 $_SESSION['title'] = 'Settings';
 ?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -120,17 +131,7 @@ if (!isset($_POST['logout'])) {
     <?php
 
 }
-if (isset($_POST['logout'])) {
-    ?><script>
-            console.log("SUBMITTEDDDDD")
-        </script>
-    <?php
 
-    $_SESSION['reg'] = 0;
-    unset($_SESSION['ruser']);
-    header('Location: index.php');
-    exit();
-}
 
 
     ?>

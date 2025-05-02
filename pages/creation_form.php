@@ -1,8 +1,8 @@
 <?php
-// if (isset($_GET['page'])) {
-//     $page = $_GET['page'];
-// }
-
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+}
+include_once('pages/functions.php');
 ?>
 <div class="d-flex align-items-start h-100 ">
     <!-- форма создания -->
@@ -18,6 +18,10 @@
 
 <?php
 
-if (isset($_POST['title'])) {
+if (isset($_POST['createbtn'])) {
+    $note = new Note($_POST['title']); #может сразу инициализировать с параметрами из пост?
+    $note->set_title($_POST['title']);
+    print_r($note);
+    // echo "fdjlkevnmjlkfevnjlkfem";
 }
 ?>

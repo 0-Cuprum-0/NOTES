@@ -176,8 +176,17 @@ function newpassword($pass, $newpass)
     return true;
 }
 class Note
+
 {
     public $title;
+    function set_title($name)
+    {
+        $link = connect();
+        $this->title  = $name;
+        $res = 'INSERT INTO pages (page_name)
+            VALUES ("' . $name . '")';
+        $rel = mysqli_query($link, $res);
+    }
 }
 
 
