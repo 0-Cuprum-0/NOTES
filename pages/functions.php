@@ -187,13 +187,22 @@ class Note
 
 {
     public $title;
-    function create_note()
+
+
+    function create_note($name)
     {
         $link = connect();
-        // $this->title  = $name;
+        $this->title  = $name;
         $res = 'INSERT INTO pages (page_name)
             VALUES ("' . $this->title . '")';
         mysqli_query($link, $res);
+        // echo " $res<br>";
+        // if (!mysqli_query($link, $res)) {
+        //     echo "Ошибка: " . mysqli_error($link);
+        // } else {
+        //     echo "Успешно добавлено";
+        // }
+        echo $this->title;
 
         if (isset($_SESSION['id'])) {
             $sel = 'UPDATE pages 
@@ -201,10 +210,11 @@ class Note
             WHERE page_name="' . $this->title . '"';
             $res = mysqli_query($link, $sel);
         }
-        function show_note()
-        {
-            include_once('pages/built.php');
-        }
+        $this->show_notes();
+    }
+    function show_notes()
+    {
+        include_once('pages/built.php');
     }
 }
 
