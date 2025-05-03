@@ -210,7 +210,7 @@ class Note
             WHERE page_name="' . $this->title . '"';
             $res = mysqli_query($link, $sel);
         }
-        $this->show_notes();
+        // $this->show_notes();
     }
     function show_notes()
     {

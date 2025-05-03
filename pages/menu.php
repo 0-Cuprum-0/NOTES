@@ -36,8 +36,10 @@ if (!isset($_GET['page'])) {
     }
     ?>
 
-    <div class="d-flex align-items-start ">
-
+    <div class="align-items-start ">
+        <?php
+        include_once('pages/built.php');
+        ?>
         <!-- сборка заметки -->
 
     </div>
