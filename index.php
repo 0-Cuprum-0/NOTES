@@ -1,9 +1,7 @@
 <?php
 session_start();
-
-
+include_once("pages/functions.php");
 // $_SESSION['debug'] = 'this is debug!';
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -23,6 +21,14 @@ if (!isset($_SESSION['num'])) {
 if ($_SESSION['reg'] == 1) {
     $_SESSION['num'] = 25;
 }
+$link = connect();
+$rel = 'SELECT COUNT(*) FROM pages WHERE user_id ="' . $_SESSION['id'] . '" ';
+$number = mysqli_query($link, $rel);
+$s = mysqli_fetch_array($number);
+
+$count = $s[0];
+$_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
+// echo $_SESSION['rem'];
 // if (!isset($_SESSION['title'])) {
 // //     $_SESSION['title'] = 'Notes';
 // // }
@@ -31,7 +37,7 @@ if ($_SESSION['reg'] == 1) {
 // if (!isset($_SESSION['reg'])) { IT DOESNT WORK
 //     $_SESSION['reg'] = 0;
 // }
-include_once("pages/functions.php");
+
 ?>
 
 <!DOCTYPE html>

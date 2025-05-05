@@ -1,4 +1,13 @@
 <?php
+
+$link = connect();
+$rel = 'SELECT COUNT(*) FROM pages WHERE user_id ="' . $_SESSION['id'] . '" ';
+$number = mysqli_query($link, $rel);
+$s = mysqli_fetch_array($number);
+$count = $s[0];
+$_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
+// echo $_SESSION['rem'];
+
 if (isset($_POST['logout'])) {
 ?><script>
         console.log("SUBMITTEDDDDD")
@@ -24,8 +33,11 @@ $_SESSION['title'] = 'Settings';
                                         echo "not registered";
                                     } else {
                                         echo "registered";
-                                    ?> as <?php echo $_SESSION['ruser'] ?> that means that you have <?php echo $_SESSION['num']; ?> notes to create left</p><?php
-                                                                                                                                                        } ?>
+                                    ?> as <?php echo $_SESSION['ruser'] ?> that means that you have <?php
+
+                                                                                                    echo $_SESSION['rem'];
+                                                                                                    ?> out of <?php echo $_SESSION['num']; ?> notes to create left</p><?php
+                                                                                                                                                                    } ?>
 
 <p class="p-0 m-0 mt-3">If you want to change your info, please enter your password here:</p>
 
