@@ -212,10 +212,10 @@ class Note
         }
         // $this->show_notes();
     }
-    function show_notes()
-    {
-        include_once('pages/built.php');
-    }
+    // function show_notes()
+    // {
+    //     include_once('pages/built.php');
+    // }
 }
 
 

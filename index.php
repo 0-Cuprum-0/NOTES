@@ -54,17 +54,13 @@ include_once("pages/functions.php");
     <div class="container-fluid h-100">
 
         <div class="row h-100">
-            <div class="col-sm-2 d-flex flex-column align-items-center justify-content-center py-0 р-100  ">
+            <div class="col-sm-2 d-flex flex-column align-items-start py-2" style="overflow-y: auto;">
 
-                <div class="d-flex w-100  p-0 justify-content-center" style="height: 50px;"><?php include_once('pages/user.php'); ?></div>
-                <div class="w-100 h-75 p-0 justify-content-center d-flex p-0">
-                    <?php include_once('pages/menu.php'); ?>
-                </div>
-                <div class="w-100 p-0" style="height: 70px;">
-                    <a href="index.php?page=3" style="text-decoration: none;">
-                        <img class="m-0 p-0" width="55" height="55" src="images/settings.png" alt="settings button" />
-                    </a>
-                </div>
+
+                <?php include_once('pages/user.php'); ?>
+                <?php include_once('pages/menu.php'); ?>
+
+
 
 
             </div>

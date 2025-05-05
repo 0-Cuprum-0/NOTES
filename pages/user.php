@@ -12,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-<div class="row w-100 justify-content-center align-items-center">
+<div class="row w-100 justify-content-center align-items-center" style="height:100px;">
     <div class="col-sm-4 px-4 justify-content-center align-items-center"><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/FFFFFF/user--v1.png" alt="user--v1" /></div>
     <div class="col-sm-6 p-0 justify-content-center align-items-center">
         <!-- <input class="noaccount" type="submit" name="noaccount" value="No account" style="border:0; background: transparent;"> -->

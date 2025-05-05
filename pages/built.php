@@ -17,17 +17,15 @@ $count = $s[0];
 for ($i = $count - 1; $i >= 0; $i--) {
     $element = $all[$i][1];
 ?>
-    <div class="card" style="width: 18rem;">
+    <div class="card">
         <div class="card-body">
-            <h5 class="card-title"><?php $element ?></h5>
+            <h5 class="card-title" style="height:30px;"><?php $element ?></h5>
 
         </div>
     </div>
 
 <?php
 
-    // print_r($element);
-    // print_r("  ");
 }
 
 
