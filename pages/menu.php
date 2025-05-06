@@ -18,6 +18,7 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
 </head>
 
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <div class="w-100 d-flex flex-column">
 
@@ -56,7 +57,7 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
         <div class="d-flex flex-column mt-2">
 
             <!-- форма создания -->
-            <form action="index.php" method="POST" class="input-group mx-auto" id="create_div">
+            <form action="index.php?page=<?= $page ?>" method="POST" class="input-group mx-auto" id="create_div">
                 <div class="form-group m-0 w-100">
                     <textarea type="text" class="form-control my-1" name="title" placeholder="Name" style="height:25px;"></textarea>
                     <textarea type="text" class="form-control my-1" name="descr" placeholder="Description"></textarea>
@@ -71,10 +72,29 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
 
         <?php
 
+        // echo $_SESSION['rem'];
+
         if (isset($_POST['createbtn'])) {
             if (isset($_POST['title'])) { #######################################################
-                $note = new Note($_POST['title']);
-                $note->create_note($_POST['title']);
+                if ($_SESSION['rem'] > 0) {
+                    $note = new Note($_POST['title']);
+                    $note->create_note($_POST['title']);
+                } else {
+                    // echo "NOOOOOOOOOOOOOOOOOOOO";
+
+        ?>
+                    <script>
+                        console.log("YOU WONT PASS!!")
+
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'You have reached your limit for notes!',
+                            icon: 'error',
+                            confirmButtonText: 'Cancel'
+                        })
+                    </script>
+        <?php
+                }
             } else {
                 echo "<h3>SET NAME!</h3>";
             }

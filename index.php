@@ -21,6 +21,7 @@ if (!isset($_SESSION['num'])) {
 if ($_SESSION['reg'] == 1) {
     $_SESSION['num'] = 25;
 }
+
 $link = connect();
 $rel = 'SELECT COUNT(*) FROM pages WHERE user_id ="' . $_SESSION['id'] . '" ';
 $number = mysqli_query($link, $rel);

@@ -191,18 +191,31 @@ class Note
 
     function create_note($name)
     {
+
+
         $link = connect();
         $this->title  = $name;
         $res = 'INSERT INTO pages (page_name)
-            VALUES ("' . $this->title . '")';
+        VALUES ("' . $this->title . '")';
         mysqli_query($link, $res);
+        $link = connect();
+        $rel = 'SELECT COUNT(*) FROM pages WHERE user_id ="' . $_SESSION['id'] . '" ';
+        $number = mysqli_query($link, $rel);
+        $s = mysqli_fetch_array($number);
+        $count = $s[0];
+        $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
+
+
+
+
+
         // echo " $res<br>";
         // if (!mysqli_query($link, $res)) {
         //     echo "Ошибка: " . mysqli_error($link);
         // } else {
         //     echo "Успешно добавлено";
         // }
-        echo $this->title;
+        // echo $this->title;
 
         if (isset($_SESSION['id'])) {
             $sel = 'UPDATE pages 
@@ -223,3 +236,4 @@ class Note
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
