@@ -30,6 +30,38 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
         if (!isset($_GET['page'])) {
             $page = 3;
         }
+
+        // echo $_SESSION['rem'];
+
+        if (isset($_POST['createbtn'])) {
+            if (isset($_POST['title'])) { #######################################################
+                if ($_SESSION['rem'] > 0) {
+                    $note = new Note($_POST['title']);
+                    $note->create_note($_POST['title']);
+                    header("Location: index.php?page=" . $page);
+                } else {
+                    // echo "NOOOOOOOOOOOOOOOOOOOO";
+
+        ?>
+                    <script>
+                        console.log("YOU WONT PASS!!")
+
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'You have reached your limit for notes!',
+                            icon: 'error',
+                            confirmButtonText: 'Cancel'
+                        })
+                    </script>
+        <?php
+                }
+            } else {
+                echo "<h3>SET NAME!</h3>";
+            }
+        }
+
+
+
         ?>
 
         <form method="POST" class="input-group">
@@ -59,7 +91,7 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
             <!-- форма создания -->
             <form action="index.php?page=<?= $page ?>" method="POST" class="input-group mx-auto" id="create_div">
                 <div class="form-group m-0 w-100">
-                    <textarea type="text" class="form-control my-1" name="title" placeholder="Name" style="height:25px;"></textarea>
+                    <textarea type="text" class="form-control my-1" name="title" placeholder="Name" maxlength="25" style="height:25px;"></textarea>
                     <textarea type="text" class="form-control my-1" name="descr" placeholder="Description"></textarea>
                 </div>
 
@@ -67,59 +99,28 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
             </form>
             <?php
             // include_once('pages/built.php')
+            // ПРОВЕРКА PAGE И PAGE_MENU
+            // if (isset($_GET['page'])) {
+            //     echo $_GET['page'];
+            // } else {
+            //     echo "no page";
+            // }
+            // if (isset($_GET['page_menu'])) {
+            //     echo $_GET['page_menu'];
+            // } else {
+            //     echo "no page_menu";
+            // }
+            // if (isset($_GET['page_menu'])) {
+            //     $page_menu = $_GET['page_menu'];
+            //     if ($page_menu == 1) {
+            //         include_once("pages/creation_form.php");
+            //     }
+            // }
+
             ?>
         </div>
 
-        <?php
 
-        // echo $_SESSION['rem'];
-
-        if (isset($_POST['createbtn'])) {
-            if (isset($_POST['title'])) { #######################################################
-                if ($_SESSION['rem'] > 0) {
-                    $note = new Note($_POST['title']);
-                    $note->create_note($_POST['title']);
-                } else {
-                    // echo "NOOOOOOOOOOOOOOOOOOOO";
-
-        ?>
-                    <script>
-                        console.log("YOU WONT PASS!!")
-
-                        Swal.fire({
-                            title: 'Error!',
-                            text: 'You have reached your limit for notes!',
-                            icon: 'error',
-                            confirmButtonText: 'Cancel'
-                        })
-                    </script>
-        <?php
-                }
-            } else {
-                echo "<h3>SET NAME!</h3>";
-            }
-        }
-        ?>
-
-        <?php
-        // ПРОВЕРКА PAGE И PAGE_MENU
-        // if (isset($_GET['page'])) {
-        //     echo $_GET['page'];
-        // } else {
-        //     echo "no page";
-        // }
-        // if (isset($_GET['page_menu'])) {
-        //     echo $_GET['page_menu'];
-        // } else {
-        //     echo "no page_menu";
-        // }
-        // if (isset($_GET['page_menu'])) {
-        //     $page_menu = $_GET['page_menu'];
-        //     if ($page_menu == 1) {
-        //         include_once("pages/creation_form.php");
-        //     }
-        // }
-        ?>
 
         <div class="align-items-start ">
             <?php

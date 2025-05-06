@@ -19,7 +19,7 @@ for ($i = $count - 1; $i >= 0; $i--) {
 ?>
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title" style="height:30px;"><?php $element ?></h5>
+            <h5 class="card-title" style="height:30px;"><?php echo $element; ?></h5>
 
         </div>
     </div>
