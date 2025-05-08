@@ -21,7 +21,7 @@ for ($i = $count - 1; $i >= 0; $i--) {
     $id = $all[$i][0];
 ?>
     <div class="card">
-        <div class="card-body" data-id=$id onclick="loadNote()">
+        <div class="card-body" data-number=$id onclick="loadNote()">
             <h5 class="card-title" style="height:30px;"><?php echo $element; ?></h5>
             <p class="card-text" style="height:15px;"><?php echo $cut;
                                                         echo "...";
@@ -41,10 +41,13 @@ for ($i = $count - 1; $i >= 0; $i--) {
 }
 ?>
 <script>
+    document.querySelectorAll(div.card)
+
+
     function loadNote() {
 
         console.log("CLICKEDDDDDD ")
-        console.log(this.dataset.id)
+        console.log(this.dataset.number)
 
     }
 </script>
