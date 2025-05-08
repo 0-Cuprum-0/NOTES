@@ -1,4 +1,6 @@
 <?php
+ob_start();
+
 session_start();
 include_once("pages/functions.php");
 // $_SESSION['debug'] = 'this is debug!';

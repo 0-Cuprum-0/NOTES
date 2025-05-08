@@ -187,17 +187,22 @@ class Note
 
 {
     public $title;
+    public $descr;
 
 
-    function create_note($name)
+    function create_note($name, $information)
     {
 
 
         $link = connect();
         $this->title  = $name;
-        $res = 'INSERT INTO pages (page_name)
-        VALUES ("' . $this->title . '")';
+        $this->descr  = $information;
+
+        $res = 'INSERT INTO pages (page_name,description)
+        VALUES ("' . $this->title . '","' . $this->descr . '")';
         mysqli_query($link, $res);
+
+
         $link = connect();
         $rel = 'SELECT COUNT(*) FROM pages WHERE user_id ="' . $_SESSION['id'] . '" ';
         $number = mysqli_query($link, $rel);
@@ -207,28 +212,13 @@ class Note
 
 
 
-
-
-        // echo " $res<br>";
-        // if (!mysqli_query($link, $res)) {
-        //     echo "Ошибка: " . mysqli_error($link);
-        // } else {
-        //     echo "Успешно добавлено";
-        // }
-        // echo $this->title;
-
         if (isset($_SESSION['id'])) {
             $sel = 'UPDATE pages 
             SET user_id = "' . $_SESSION['id'] . '"
             WHERE page_name="' . $this->title . '"';
             $res = mysqli_query($link, $sel);
         }
-        // $this->show_notes();
     }
-    // function show_notes()
-    // {
-    //     include_once('pages/built.php');
-    // }
 }
 
 

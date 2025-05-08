@@ -17,7 +17,7 @@ if (isset($_POST['logout'])) {
     $_SESSION['reg'] = 0;
     unset($_SESSION['ruser']);
     unset($_SESSION['id']);
-    header('Location: index.php');
+    header('Location: index.php?page=3');
     exit();
 }
 $_SESSION['title'] = 'Settings';

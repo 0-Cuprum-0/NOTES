@@ -37,8 +37,8 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
             if (isset($_POST['title'])) { #######################################################
                 if ($_SESSION['rem'] > 0) {
                     $note = new Note($_POST['title']);
-                    $note->create_note($_POST['title']);
-                    header("Location: index.php?page=" . $page);
+                    $note->create_note($_POST['title'], $_POST['descr']);
+                    header("Location: index.php?page=4");
                 } else {
                     // echo "NOOOOOOOOOOOOOOOOOOOO";
 
@@ -89,10 +89,10 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
         <div class="d-flex flex-column mt-2">
 
             <!-- форма создания -->
-            <form action="index.php?page=<?= $page ?>" method="POST" class="input-group mx-auto" id="create_div">
+            <form action="index.php?page=<?= $page ?>" method="POST" class="input-group mx-auto">
                 <div class="form-group m-0 w-100">
                     <textarea type="text" class="form-control my-1" name="title" placeholder="Name" maxlength="25" style="height:25px;"></textarea>
-                    <textarea type="text" class="form-control my-1" name="descr" placeholder="Description"></textarea>
+                    <textarea type="text" class="form-control my-1" name="descr" placeholder="Description" maxlength="100"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-outline-info" name="createbtn">Create</button>
@@ -119,22 +119,14 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
 
             ?>
         </div>
-
-
-
         <div class="align-items-start ">
-            <?php
-            // include_once('pages/built.php');
-            ?>
-            <!-- сборка заметки -->
-
         </div>
 
         <div class="w-100 p-0 fixed-bottom" style="height: 70px;">
-            <a href="index.php?page=3" style="text-decoration: none;">
+            <a href="index.php?page=<?= $page ?>" style="text-decoration: none;">
                 <img class="m-0 p-0" width="55" height="55" src="images/settings.png" alt="settings button" />
             </a>
-            <a class="btn btn-outline-secondary" id="btn_slide" style="color:white;text-decoration: none;">+</a>
+            <!-- <a class="btn btn-outline-secondary" id="btn_slide" style="color:white;text-decoration: none;">+</a> -->
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

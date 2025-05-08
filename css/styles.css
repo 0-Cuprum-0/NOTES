@@ -1,8 +1,9 @@
 #btn_slide {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
+    position: relative;
+    bottom: 100px;
+    left: 100px;
     z-index: 1000;
+    background-color:blue;
 }
 
 #create_div {
@@ -18,6 +19,6 @@
 }
 
 #create_div.slide {
-    transform:translateY(200px)
+    transform:translateY(500px) translateX(500px)
 }
 

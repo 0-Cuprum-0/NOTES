@@ -16,10 +16,22 @@ for ($i = $count; $i > 0; $i--) {                                         #
 $count = $s[0];
 for ($i = $count - 1; $i >= 0; $i--) {
     $element = $all[$i][1];
+    $description = $all[$i][2];
+    $cut = substr($description, 0, 20);
+    $id = $all[$i][0];
 ?>
     <div class="card">
-        <div class="card-body">
+        <div class="card-body" data-id=$id onclick="loadNote()">
             <h5 class="card-title" style="height:30px;"><?php echo $element; ?></h5>
+            <p class="card-text" style="height:15px;"><?php echo $cut;
+                                                        echo "...";
+                                                        echo $id; ?>
+
+
+
+
+            </p>
+
 
         </div>
     </div>
@@ -27,24 +39,12 @@ for ($i = $count - 1; $i >= 0; $i--) {
 <?php
 
 }
+?>
+<script>
+    function loadNote() {
 
+        console.log("CLICKEDDDDDD ")
+        console.log(this.dataset.id)
 
-#
-// echo $count;                                      #                     
-                                    #
-// echo $aa;                                         #
-// echo '</pre>';    
-
-
-
-#
-// while ($row = mysqli_fetch_assoc($aa)) {  #<------#ПРОВЕРКА ВЫВОДОВ БД
-//     echo "<pre>";
-//     print_r($row);
-//     echo "</pre><hr>";
-// }
-
-
-// for ($i = $_SESSION['num']; $i > 0; $i++) {
-//     echo $all[$i]['page_name'];
-// }
+    }
+</script>
