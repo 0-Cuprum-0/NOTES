@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: Content-Type');
 $link = connect();
 
 // $firstElement = $all[$count - 1];
@@ -19,7 +20,7 @@ if (isset($_GET['note_id'])) {
 <div class="w-100  p-0  d-flex m-0" style="height:100px;">
 
     <div class="my-auto">
-        <h1 id="editableParagraph" contenteditable="true">
+        <h1 id="Title" contenteditable="true">
             <?php
             if (isset($note_id)) {
                 if (isset($pageName)) {
@@ -31,7 +32,7 @@ if (isset($_GET['note_id'])) {
     </div>
 </div>
 <div class="container p-0" contenteditable="true">
-    <p id="editableParagraph">
+    <p id="Description">
         <?php
         if (isset($note_id)) {
             if (isset($pageDescription)) {
@@ -41,7 +42,7 @@ if (isset($_GET['note_id'])) {
 
         ?>
     </p>
-    <p id="editableParagraph">
+    <p id="Content">
         <?php
         if (isset($note_id)) {
             if (isset($pageContent)) {
@@ -52,16 +53,53 @@ if (isset($_GET['note_id'])) {
     </p>
 </div>
 <script>
-    var paragraphs = document.querySelectorAll(".editableParagraph");
+    document.addEventListener("DOMContentLoaded", () => {
 
 
-    setInterval(() => AutoSave(paragraphs), 5000);
 
-    function AutoSave(blocks) {
-        console.log("AUTOSAAVE")
-        blocks.forEach(element => {
-            console.log(element.textContent)
-        });
 
-    }
+        setInterval(() => AutoSave(), 3000);
+
+
+        async function AutoSave() {
+            var title = document.querySelector("#Title");
+            var description = document.querySelector("#Description");
+            var content = document.querySelector("#Content");
+            const resp = {
+                "title": title.textContent,
+                "description": description.textContent,
+                "content": content.textContent
+            }
+            // console.log(resp)
+            // console.log("AUTOSAAVE")
+            //         foreach ($toppings as $topping) {
+            // echo $topping, "\n";
+            // }
+            // console.log(block.textContent)
+            const response = await fetch("pages/autosave.php", {
+                method: "POST",
+                body: JSON.stringify({
+                    "title": title.textContent,
+                    "description": description.textContent,
+                    "content": content.textContent
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Requested-With": "XMLHttpRequest"
+
+                },
+
+            }).then(response => response.json());
+            console.log(response)
+
+
+
+
+
+        };
+    })
 </script>
+
+<!-- <?php
+        include_once("pages/autosave.php");
+        ?> -->
