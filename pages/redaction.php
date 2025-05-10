@@ -17,21 +17,21 @@ if (isset($_GET['note_id'])) {
 
 ?>
 <div class="w-100  p-0  d-flex m-0" style="height:100px;">
-    <form action="index.php?page=4" method="POST">
-        <div class="my-auto">
-            <h1 id="editableParagraph" contenteditable="true">
-                <?php
-                if (isset($note_id)) {
-                    if (isset($pageName)) {
-                        echo $pageName;
-                    }
+
+    <div class="my-auto">
+        <h1 id="editableParagraph" contenteditable="true">
+            <?php
+            if (isset($note_id)) {
+                if (isset($pageName)) {
+                    echo $pageName;
                 }
-                ?>
-            </h1>
-        </div>
+            }
+            ?>
+        </h1>
+    </div>
 </div>
 <div class="container p-0" contenteditable="true">
-    <p id="descr">
+    <p id="editableParagraph">
         <?php
         if (isset($note_id)) {
             if (isset($pageDescription)) {
@@ -41,7 +41,7 @@ if (isset($_GET['note_id'])) {
 
         ?>
     </p>
-    <p id="info">
+    <p id="editableParagraph">
         <?php
         if (isset($note_id)) {
             if (isset($pageContent)) {
@@ -51,5 +51,17 @@ if (isset($_GET['note_id'])) {
         ?>
     </p>
 </div>
-</form>
-<?php ?>
+<script>
+    var paragraphs = document.querySelectorAll(".editableParagraph");
+
+
+    setInterval(() => AutoSave(paragraphs), 5000);
+
+    function AutoSave(blocks) {
+        console.log("AUTOSAAVE")
+        blocks.forEach(element => {
+            console.log(element.textContent)
+        });
+
+    }
+</script>
