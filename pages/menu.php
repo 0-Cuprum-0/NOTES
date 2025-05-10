@@ -123,7 +123,7 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
         </div>
 
         <div class="w-100 p-0 fixed-bottom" style="height: 70px;">
-            <a href="index.php?page=<?= $page ?>" style="text-decoration: none;">
+            <a href="index.php?page=3" style="text-decoration: none;">
                 <img class="m-0 p-0" width="55" height="55" src="images/settings.png" alt="settings button" />
             </a>
             <!-- <a class="btn btn-outline-secondary" id="btn_slide" style="color:white;text-decoration: none;">+</a> -->
@@ -131,7 +131,7 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </div>
-    <script>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", () => {
             const button = document.getElementById('btn_slide');
             const createDiv = document.getElementById('create_div');
@@ -147,7 +147,7 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
                 }
             });
         });
-    </script>
+    </script> -->
 </body>
 
 </html>
