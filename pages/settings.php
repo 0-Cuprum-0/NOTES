@@ -1,43 +1,54 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-$link = connect();
-$rel = 'SELECT COUNT(*) FROM pages WHERE user_id ="' . $_SESSION['id'] . '" ';
-$number = mysqli_query($link, $rel);
-$s = mysqli_fetch_array($number);
-$count = $s[0];
-$_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
-// echo $_SESSION['rem'];
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/styles.css" rel="stylesheet">
+    <title>Document</title>
+</head>
 
-if (isset($_POST['logout'])) {
-?><script>
-        console.log("SUBMITTEDDDDD")
-    </script>
-<?php
+<body>
+    <?php
 
-    $_SESSION['reg'] = 0;
-    unset($_SESSION['ruser']);
-    unset($_SESSION['id']);
-    header('Location: index.php?page=3');
-    exit();
-}
-$_SESSION['title'] = 'Settings';
-?>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<div class="w-100  p-0  d-flex m-0" style="height:100px;">
-    <h1 class="p-0 my-auto">Settings</h1>
-</div>
-<br class="p-0 m-0">
-<h3 class="p-0 m-0">Account</h3>
-<p class="p-0 m-0 mt-3"> You are <?php
-                                    if ($_SESSION['reg'] == 0) {
-                                        echo "not registered";
-                                    } else {
-                                        echo "registered";
-                                    ?> as <?php echo $_SESSION['ruser'] ?> that means that you have <?php
+    $link = connect();
+    $rel = 'SELECT COUNT(*) FROM pages WHERE user_id ="' . $_SESSION['id'] . '" ';
+    $number = mysqli_query($link, $rel);
+    $s = mysqli_fetch_array($number);
+    $count = $s[0];
+    $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
+    // echo $_SESSION['rem'];
 
-                                                                                                    echo $_SESSION['rem'];
-                                                                                                    ?> out of <?php echo $_SESSION['num']; ?> notes to create left</p><?php
-                                                                                                                                                                    } ?>
+    if (isset($_POST['logout'])) {
+    ?><script>
+            console.log("SUBMITTEDDDDD")
+        </script>
+    <?php
+
+        $_SESSION['reg'] = 0;
+        unset($_SESSION['ruser']);
+        unset($_SESSION['id']);
+        header('Location: index.php?page=3');
+        exit();
+    }
+    $_SESSION['title'] = 'Settings';
+    ?>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <div class="w-100  p-0  d-flex m-0" style="height:100px;">
+        <h1 class="p-0 my-auto">Settings</h1>
+    </div>
+    <br class="p-0 m-0">
+    <h3 class="p-0 m-0">Account</h3>
+    <p class="p-0 m-0 mt-3"> You are <?php
+                                        if ($_SESSION['reg'] == 0) {
+                                            echo "not registered";
+                                        } else {
+                                            echo "registered";
+                                        ?> as <?php echo $_SESSION['ruser'] ?> that means that you have <?php
+
+                                                                                                        echo $_SESSION['rem'];
+                                                                                                        ?> out of <?php echo $_SESSION['num']; ?> notes to create left</p><?php
+                                                                                                                                                                        } ?>
 
 <p class="p-0 m-0 mt-3">If you want to change your info, please enter your password here:</p>
 
@@ -49,7 +60,7 @@ if (!isset($_POST['newbtn'])) {
 ?>
     <form action="index.php?page=3" class="p-0 m-0" method="POST" style="height:200px;">
         <div class="form-group">
-            <input type="text" class="form-control my-3 w-50" name="pass">
+            <input type="text" class="form-input my-3 w-50" name="pass">
         </div>
 
 
@@ -58,7 +69,7 @@ if (!isset($_POST['newbtn'])) {
 
                 <div class="form-group">
                     <label class="form-label" for="login">New login:</label>
-                    <input type="text" class="form-control" name="newlog">
+                    <input type="text" class="form-input" name="newlog">
 
                 </div>
 
@@ -69,13 +80,13 @@ if (!isset($_POST['newbtn'])) {
 
                 <div class="form-group">
                     <label class="form-label" for="login">New password:</label>
-                    <input type="text" class="form-control" name="newpass">
+                    <input type="text" class="form-input" name="newpass">
 
                 </div>
             </div>
         </div>
         <div class="d-flex justify-content-start mt-4">
-            <button type="submit" class="btn btn-outline-light w-50" name="newbtn">Confirm changes</button>
+            <button type="submit" class="button w-50" name="newbtn">Confirm changes</button>
         </div>
 
     </form>
@@ -117,7 +128,9 @@ if (!isset($_POST['logout'])) {
                 showConfirmButton: true,
                 showCancelButton: true,
                 confirmButtonText: "Log out",
-                confirmButtonColor: '#7E5A9B',
+                confirmButtonColor: '#A54441',
+                background: "#fff url(/images/pixil-frame-0.png)",
+
             });
 
             Toast.fire({
@@ -136,7 +149,7 @@ if (!isset($_POST['logout'])) {
     <form action="index.php?page=3" class="p-0" id="myForm" method="POST">
         <div class="form-group">
             <input type="hidden" name="logout" value="1">
-            <button onclick="confirmm(event)" type="button" class="btn btn-outline-light mt-3">Log out</button>
+            <button onclick="confirmm(event)" type="button" class="button mt-3">Log out</button>
         </div>
 
 
@@ -152,4 +165,10 @@ if (!isset($_POST['logout'])) {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.js"></script>
 
-    <?php
+
+    <style>
+
+    </style>
+</body>
+
+</html>
