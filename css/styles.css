@@ -21,4 +21,8 @@
 #create_div.slide {
     transform:translateY(500px) translateX(500px)
 }
+div[contenteditable=true] {
+   background: rgba(240, 6, 6, 0); /* transparent bg */
+   resize:none; /* disable resizing */
+}
 

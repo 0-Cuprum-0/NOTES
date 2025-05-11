@@ -2,6 +2,7 @@
 header('Access-Control-Allow-Origin: Content-Type');
 $link = connect();
 
+
 // $firstElement = $all[$count - 1];
 // $firstName = $firstElement[1];
 // $firstdescription = $firstElement[2];
@@ -20,11 +21,13 @@ if (isset($_GET['note_id'])) {
 <div class="w-100  p-0  d-flex m-0" style="height:100px;">
 
     <div class="my-auto">
-        <h1 id="Title" contenteditable="true">
+        <h1 id="Title" contenteditable="true" aria-placeholder="title">
             <?php
             if (isset($note_id)) {
                 if (isset($pageName)) {
                     echo $pageName;
+                } else {
+                    echo '<br>';
                 }
             }
             ?>
@@ -62,13 +65,17 @@ if (isset($_GET['note_id'])) {
 
 
         async function AutoSave() {
+            let params = new URL(document.location.toString()).searchParams;
+            let name = params.get("note_id");
+            console.log(name)
             var title = document.querySelector("#Title");
             var description = document.querySelector("#Description");
             var content = document.querySelector("#Content");
             const resp = {
                 "title": title.textContent,
                 "description": description.textContent,
-                "content": content.textContent
+                "content": content.textContent,
+
             }
             // console.log(resp)
             // console.log("AUTOSAAVE")
@@ -81,7 +88,8 @@ if (isset($_GET['note_id'])) {
                 body: JSON.stringify({
                     "title": title.textContent,
                     "description": description.textContent,
-                    "content": content.textContent
+                    "content": content.textContent,
+                    "id": name
                 }),
                 headers: {
                     "Content-Type": "application/json",
@@ -103,3 +111,12 @@ if (isset($_GET['note_id'])) {
 <!-- <?php
         include_once("pages/autosave.php");
         ?> -->
+
+<?php
+// $link = connect();
+// $rec = 'UPDATE pages 
+//             SET page_name = "NAAAMEEE", description = "' . $note_description . '",info = "' . $note_content . '"
+//             WHERE id="' . $_GET['note_id'] . '"';
+// $res = mysqli_query($link, $rec);
+
+?>
