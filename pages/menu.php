@@ -32,7 +32,7 @@
     <body>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        <div class="w-100 d-flex flex-column">
+        <div class=" w-100 d-flex flex-column">
 
 
             <?php
@@ -76,7 +76,7 @@
 
             ?>
 
-            <form method="POST" class="container input-group w-100 p-0">
+            <form method="POST" class="container input-group w-100 p-0" style="border-radius: 3px;">
 
                 <input type="text" class="form-input w-75 " name="search">
                 <button type="submit" class="p-0 w-25" name="searchbtn" type="button"><img class="m-0 p-0" width="40" height="40" src="images/glass_pixel.png" alt="search button" /></button>

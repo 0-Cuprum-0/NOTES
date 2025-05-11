@@ -70,7 +70,7 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
     <div class="container-fluid h-100">
 
         <div class="row h-100">
-            <div class="col-sm-2 d-flex flex-column align-items-start py-2" style="overflow-y: auto;">
+            <div class="col-sm-2 d-flex flex-column align-items-start py-2" style="position:fixed;width:267px">
 
 
                 <?php include_once('pages/user.php'); ?>
@@ -80,7 +80,7 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
 
 
             </div>
-            <div class="col-sm-10 d-flex pt-10 align-items-center justify-content-center ">
+            <div class="col-sm-10 d-flex pt-10 align-items-center justify-content-center " style="overflow-y: scroll;margin-left: 267px;">
                 <div class="row w-100 h-100 m-20">
 
 
