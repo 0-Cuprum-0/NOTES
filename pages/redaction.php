@@ -31,8 +31,8 @@
     ?>
     <div class="w-100  p-0  d-flex m-0" style="height:100px;">
 
-        <div class="my-auto w-100 h-100 align-items-center justify-content-center">
-            <h1 id="Title" contenteditable="true" class="musthover my-auto w-100 h-100" maxlength="25">
+        <div class="w-100 h-100">
+            <h1 id="Title" contenteditable="true" class="musthover w-100 h-100" maxlength="25" style="padding-top: 27px;">
                 <?php
                 if (isset($note_id)) {
                     if (isset($pageName)) {
@@ -56,7 +56,7 @@
 
             ?>
         </p>
-        <p id="Content" class="musthover my-auto w-100" style="height: 556px;">
+        <p id="Content" class="musthover my-auto w-100 " style="height: 556px;">
             <?php
             if (isset($note_id)) {
                 if (isset($pageContent)) {

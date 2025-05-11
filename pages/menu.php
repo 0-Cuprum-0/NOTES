@@ -79,14 +79,25 @@
             <form method="POST" class="container input-group w-100 p-0">
 
                 <input type="text" class="form-input w-75 " name="search">
-                <button type="submit" class="p-0 w-25" type="button"><img class="m-0 p-0" width="40" height="40" src="images/glass_pixel.png" alt="search button" /></button>
+                <button type="submit" class="p-0 w-25" name="searchbtn" type="button"><img class="m-0 p-0" width="40" height="40" src="images/glass_pixel.png" alt="search button" /></button>
             </form>
             <div class="overflow-y-scroll" style="height: 350px;">
-                <!-- сдесь будут заметки -->
                 <?php
-                include_once('pages/built.php')
+                if (isset($_POST['searchbtn'])) {
+                    if (isset($_POST['search'])) {
+                        include_once('pages/search.php');
+                    }
+                } else {
+
+                    include_once('pages/built.php');
+                }
+
                 ?>
             </div>
+
+
+
+
 
 
 
