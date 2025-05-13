@@ -3,11 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="../css/styles.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tags form</title>
 </head>
 
 <body>
+
     <?php
     $link = connect();
 
@@ -79,12 +81,80 @@
         <?php
         $req = 'SELECT * FROM tags WHERE user_id="' . $_SESSION['id'] . '"';
         $res = mysqli_query($link, $req);
-        echo '<table class="table" style = "width:50%">';
-        while ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
+        while ($row = mysqli_fetch_array($res, MYSQLI_BOTH)) {
+            $colors[] = $row['color'];
+        }
+        // echo $colors;
+        $first = isset($colors[0]) ? $colors[0] : 'rgba(0, 0, 0, 0)';
+        $second = isset($colors[1]) ? $colors[1] : 'rgba(0, 0, 0, 0)';
+        $third = isset($colors[2]) ? $colors[2] : 'rgba(0, 0, 0, 0)';
+        $forth = isset($colors[3]) ? $colors[3] : 'rgba(0, 0, 0, 0)';
+        $fifth = isset($colors[4]) ? $colors[4] : 'rgba(0, 0, 0, 0)';
+
+
+        ?>
+        <script>
+            let firstcolor = "<?php echo $first ?>"
+            let secondcolor = "<?php echo $second ?>"
+            let thirdcolor = "<?php echo $third ?>"
+            let forthcolor = "<?php echo $forth ?>"
+            let fifthcolor = "<?php echo $fifth ?>"
+        </script>
+
+        <style>
+            td:hover {
+                background-color: rgba(177, 177, 177, 0.08);
+            }
+
+            :root {
+                --first: rgba(0, 0, 0, 0);
+                --second: rgba(0, 0, 0, 0);
+                --third: rgba(0, 0, 0, 0);
+                --forth: rgba(0, 0, 0, 0);
+                --fifth: rgba(0, 0, 0, 0);
+            }
+
+
+
+            tr:nth-child(1) td:nth-child(1) {
+                background-color: var(--first);
+            }
+
+            tr:nth-child(2) td:nth-child(1) {
+                background-color: var(--second);
+            }
+
+            tr:nth-child(3) td:nth-child(1) {
+                background-color: var(--third);
+            }
+
+            tr:nth-child(4) td:nth-child(1) {
+                background-color: var(--forth);
+            }
+
+            tr:nth-child(5) td:nth-child(1) {
+                background-color: var(--fifth);
+            }
+        </style>
+        <script>
+            const root = document.querySelector(':root');
+            root.style.setProperty('--first', firstcolor);
+            root.style.setProperty('--second', secondcolor);
+            root.style.setProperty('--third', thirdcolor);
+            root.style.setProperty('--forth', forthcolor);
+            root.style.setProperty('--fifth', fifthcolor);
+        </script>
+
+        <?php
+        $req = 'SELECT * FROM tags WHERE user_id="' . $_SESSION['id'] . '"';
+        $res2 = mysqli_query($link, $req);
+
+        echo '<table style = "width:30%">';
+        while ($row = mysqli_fetch_array($res2, MYSQLI_NUM)) {
+
             echo '<tr>';
             echo '<td>' . $row[0] . '</td>';
-            echo '<td>' . $row[1] . '</td>';
-            echo '<td>' . $row[2] . '</td>';
+
             echo '</tr>';
         }
         echo '</table>';

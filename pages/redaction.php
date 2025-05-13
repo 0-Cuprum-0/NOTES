@@ -105,11 +105,11 @@
 
 
 
-            // setInterval(() => {
-            //     if (autosaveEnabled) {
-            //         AutoSave();
-            //     }
-            // }, 7000);
+            setInterval(() => {
+                if (autosaveEnabled) {
+                    AutoSave();
+                }
+            }, 7000);
 
 
             async function AutoSave() {

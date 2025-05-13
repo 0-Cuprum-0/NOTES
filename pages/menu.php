@@ -142,10 +142,9 @@
 
                 ?>
             </div>
-            <div class="align-items-start ">
-            </div>
 
-            <div class="w-100 p-0 fixed-bottom" style="height: 70px;">
+
+            <div class="p-0 fixed-bottom" style="height: 70px;width: 70px;">
                 <a href="index.php?page=3" style="text-decoration: none;">
                     <img class="m-0 p-0" width="55" height="55" src="images/sett_pixel.png" alt="settings button" />
                 </a>

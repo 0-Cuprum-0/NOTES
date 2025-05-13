@@ -80,7 +80,8 @@ button:hover {
 [contenteditable="true"]:focus {
   outline: none;
 }
-tr:hover {background-color: coral;}
+
+
 
 
 
