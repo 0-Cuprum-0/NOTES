@@ -64,6 +64,12 @@
                         ?>
                     </select>
                     <button type="submit" name="choosetagbtn">Tag it!</button>
+                    <?php
+                    // if (isset($_POST['choosetagbtn'])) {
+                    //     if (isset($_POST['color'])) {
+                    //     }
+                    // }
+                    ?>
 
                 </div>
             </form>
@@ -72,10 +78,6 @@
     <div class="container p-0" contenteditable="true">
         <p id="Description" class="musthover my-auto w-100 " style="height: 100px;" maxlength="100">
             <?php
-            if (isset($_POST['choosetagbtn'])) {
-                if (isset($_POST['color'])) {
-                }
-            }
             if (isset($note_id)) {
                 if (isset($pageDescription)) {
                     echo $pageDescription;
@@ -93,6 +95,9 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            console.log("LOADED")
+
+
             setTimeout(() => {
                 console.log("Waited 3 seconds!");
             }, 3000);
@@ -100,9 +105,11 @@
 
 
 
-            setInterval(() => {
-                if (autosaveEnabled) AutoSave();
-            }, 7000);
+            // setInterval(() => {
+            //     if (autosaveEnabled) {
+            //         AutoSave();
+            //     }
+            // }, 7000);
 
 
             async function AutoSave() {
@@ -129,7 +136,7 @@
                 // echo $topping, "\n";
                 // }
                 // console.log(block.textContent)
-                const response = await fetch("pages/autosave.php", {
+                let response = await fetch("pages/autosave.php", {
                     method: "POST",
                     body: JSON.stringify({
                         "title": title.textContent.trim(),

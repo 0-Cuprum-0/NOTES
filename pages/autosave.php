@@ -70,6 +70,7 @@ $rec = 'UPDATE pages
             SET page_name = "' . $note_title . '", description = "' . $note_description . '",info = "' . $note_content . '"
             WHERE id="' . $note_id . '"';
 $res = mysqli_query($link, $rec);
+exit;
 // if ($res) {
 //     echo "Query sent succsessfully";
 // } else {

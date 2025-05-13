@@ -37,12 +37,7 @@
                 <p class="card-text" style="height:15px;"><?php echo $cut;
                                                             // echo "...";
                                                             // echo $id; 
-                                                            ?>
-
-
-
-
-                </p>
+                                                            ?></p>
 
 
             </div>
@@ -58,6 +53,7 @@
 
         document.querySelectorAll('.card-body').forEach(card => {
             card.addEventListener('click', () => {
+                autosaveEnabled = false;
                 console.log("CLICKED JS");
                 const cardNumber = card.dataset.number;
                 window.location.href = 'index.php?page=4&note_id=' + cardNumber;
@@ -66,17 +62,17 @@
 
 
 
-        function loadNote(element) {
-            autosaveEnabled = false;
-
-            console.log("CLICKEDDDDDD ")
-            console.log("aaaaaaaaaaaaa ")
-            console.log(element.dataset.number)
-            var cardNumber = element.dataset.number
-            window.location.href = 'index.php?page=4&note_id=' + cardNumber
+        // function loadNote(element) {
 
 
-        }
+        //     console.log("CLICKEDDDDDD ")
+        //     console.log("aaaaaaaaaaaaa ")
+        //     console.log(element.dataset.number)
+        //     var cardNumber = element.dataset.number
+        //     window.location.href = 'index.php?page=4&note_id=' + cardNumber
+
+
+        // }
     </script>
     <style>
         .my_card {
