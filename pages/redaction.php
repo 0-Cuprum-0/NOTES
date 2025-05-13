@@ -37,43 +37,23 @@
     ?>
     <div class="w-100  p-0  d-flex m-0" style="height:100px;">
 
-        <div class="w-100 d-flex h-100">
-            <h1 id="Title" contenteditable="true" class="musthover w-100 h-100" maxlength="25" style="padding-top: 27px;">
-                <?php
-                if (isset($note_id)) {
-                    if (isset($pageName)) {
-                        echo $pageName;
-                    } else {
-                        echo '<br>';
-                    }
+
+        <h1 id="Title" contenteditable="true" class="musthover h-100" maxlength="25" style="padding-top: 27px; width: 900px;">
+            <?php
+            if (isset($note_id)) {
+                if (isset($pageName)) {
+                    echo $pageName;
+                } else {
+                    echo '<br>';
                 }
-                ?>
-            </h1>
-            <? $res = mysqli_query($link, "SELECT * FROM tags");
+            }
             ?>
-            <form action="index.php?page=<?= $page ?>" method="POST" class="input-group mx-auto">
-                <div class="top_menu p-0 m-0" style="width: 100px;height:100px; ">
-                    <select name="color">
+        </h1>
+        <?php
+        include_once("pages/side.php")
+        ?>
 
-                        <option value="0">Tag</option>
-                        <?php
-                        while ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
-                            echo '<option value="' . $row[0] . '"  >  "' . $row[0] . '" </option>';
-                        }
-                        mysqli_free_result($res);
-                        ?>
-                    </select>
-                    <button type="submit" name="choosetagbtn">Tag it!</button>
-                    <?php
-                    // if (isset($_POST['choosetagbtn'])) {
-                    //     if (isset($_POST['color'])) {
-                    //     }
-                    // }
-                    ?>
 
-                </div>
-            </form>
-        </div>
     </div>
     <div class="container p-0" contenteditable="true">
         <p id="Description" class="musthover my-auto w-100 " style="height: 100px;" maxlength="100">

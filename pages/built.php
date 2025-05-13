@@ -32,7 +32,7 @@
         $id = $all[$i][0];
     ?>
         <div class="my_card">
-            <div class="card-body" data-number="<?= $id ?>"><!--onclick="loadNote(this)" убрано -->
+            <div class="card-body" style="h-100 w-100" data-number="<?= $id ?>"><!--onclick="loadNote(this)" убрано -->
                 <h5 class="card-title" style="height:30px;"><?php echo $element; ?></h5>
                 <p class="card-text" style="height:15px;"><?php echo $cut;
                                                             // echo "...";

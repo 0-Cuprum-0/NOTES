@@ -116,23 +116,23 @@
 
 
 
-            tr:nth-child(1) td:nth-child(1) {
+            tr:nth-child(1) td {
                 background-color: var(--first);
             }
 
-            tr:nth-child(2) td:nth-child(1) {
+            tr:nth-child(2) td {
                 background-color: var(--second);
             }
 
-            tr:nth-child(3) td:nth-child(1) {
+            tr:nth-child(3) td {
                 background-color: var(--third);
             }
 
-            tr:nth-child(4) td:nth-child(1) {
+            tr:nth-child(4) td {
                 background-color: var(--forth);
             }
 
-            tr:nth-child(5) td:nth-child(1) {
+            tr:nth-child(5) td {
                 background-color: var(--fifth);
             }
         </style>
