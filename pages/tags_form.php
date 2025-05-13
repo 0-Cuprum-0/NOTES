@@ -148,16 +148,35 @@
         <?php
         $req = 'SELECT * FROM tags WHERE user_id="' . $_SESSION['id'] . '"';
         $res2 = mysqli_query($link, $req);
-
+        echo '<form action="index.php?page=3" method="POST">';
         echo '<table style = "width:30%">';
         while ($row = mysqli_fetch_array($res2, MYSQLI_NUM)) {
 
             echo '<tr>';
             echo '<td>' . $row[0] . '</td>';
+            echo '<td><input type="checkbox" name="cb' . $row[1] . '"></td>';
 
             echo '</tr>';
         }
         echo '</table>';
+        echo '<button type="submit" name="delcountry" value="Delete" class="p-0 my-3"> Delete chosen tags!</button>';
+
+        echo '</form>';
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        }
+
+        if (isset($_POST['delcountry'])) {
+            foreach ($_POST as $k => $v) {
+                if (substr($k, 0, 2) == 'cb') {
+                    $idc = substr($k, 2);
+                    $del = 'DELETE FROM tags 
+                        WHERE id=' . $idc;
+                    mysqli_query($link, $del);
+                }
+            }
+            header("Location:index.php?page=3");
+        }
 
 
 
