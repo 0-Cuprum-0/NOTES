@@ -32,10 +32,10 @@
         $id = $all[$i][0];
     ?>
         <div class="my_card">
-            <div class="card-body" data-number="<?= $id ?>" onclick="loadNote(this)">
+            <div class="card-body" data-number="<?= $id ?>"><!--onclick="loadNote(this)" убрано -->
                 <h5 class="card-title" style="height:30px;"><?php echo $element; ?></h5>
                 <p class="card-text" style="height:15px;"><?php echo $cut;
-                                                            echo "...";
+                                                            // echo "...";
                                                             // echo $id; 
                                                             ?>
 
@@ -53,12 +53,24 @@
     }
     ?>
     <script>
-        document.querySelectorAll(".card")
+        let autosaveEnabled = true;
+        // document.querySelectorAll(".card-body") //ИЗМЕНЕНО!
+
+        document.querySelectorAll('.card-body').forEach(card => {
+            card.addEventListener('click', () => {
+                console.log("CLICKED JS");
+                const cardNumber = card.dataset.number;
+                window.location.href = 'index.php?page=4&note_id=' + cardNumber;
+            });
+        });
+
 
 
         function loadNote(element) {
+            autosaveEnabled = false;
 
             console.log("CLICKEDDDDDD ")
+            console.log("aaaaaaaaaaaaa ")
             console.log(element.dataset.number)
             var cardNumber = element.dataset.number
             window.location.href = 'index.php?page=4&note_id=' + cardNumber

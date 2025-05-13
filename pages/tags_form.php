@@ -8,6 +8,22 @@
 </head>
 
 <body>
+    <?php
+    $link = connect();
+
+    $another = 'SELECT COUNT(*) FROM tags WHERE user_id ="' . $_SESSION['id'] . '" ';
+    $aa = mysqli_query($link, $another);   #
+
+
+    $s = mysqli_fetch_array($aa);
+    $_SESSION['tag_count'] = $s[0];
+
+
+
+
+    ?>
+
+
     <div class="container p-0" style="margin-top: 30px;">
         <h3 class="p-0 my-auto">Tags</h3>
         <form action="index.php?page=3" class="p-0" id="myForm" method="POST">
@@ -57,11 +73,13 @@
             } else {
                 echo '<h1>Dont forget to name your tag!<h1>';
             }
-        }
-
+        } ?>
+        <p>You cant have more than 5 tags.</p>
+        <p>You have <?php echo 5 - $_SESSION['tag_count']; ?> tags left</p>
+        <?php
         $req = 'SELECT * FROM tags WHERE user_id="' . $_SESSION['id'] . '"';
         $res = mysqli_query($link, $req);
-        echo '<table class="table" style = "width:50%;backround-color:#121212 !important">';
+        echo '<table class="table" style = "width:50%">';
         while ($row = mysqli_fetch_array($res, MYSQLI_NUM)) {
             echo '<tr>';
             echo '<td>' . $row[0] . '</td>';
@@ -75,6 +93,7 @@
 
         ?>
     </div>
+
 </body>
 
 </html>

@@ -21,13 +21,16 @@
     // $firstName = $firstElement[1];
     // $firstdescription = $firstElement[2];
     if (isset($_GET['note_id'])) {
+
         $note_id = $_GET['note_id'];
         $rec = 'SELECT * FROM pages WHERE id = ' . $note_id;
         $rel = mysqli_query($link, $rec);
         $note_info = mysqli_fetch_array($rel);
-        $pageName = $note_info[1];
-        $pageDescription = $note_info[2];
-        $pageContent = $note_info[3];
+        if ($note_info) {
+            $pageName = $note_info[1];
+            $pageDescription = $note_info[2];
+            $pageContent = $note_info[3];
+        }
     }
 
 
@@ -44,10 +47,10 @@
                         echo '<br>';
                     }
                 }
-                $res = mysqli_query($link, "SELECT * FROM tags");
-
                 ?>
             </h1>
+            <? $res = mysqli_query($link, "SELECT * FROM tags");
+            ?>
             <form action="index.php?page=<?= $page ?>" method="POST" class="input-group mx-auto">
                 <div class="top_menu p-0 m-0" style="width: 100px;height:100px; ">
                     <select name="color">
@@ -63,6 +66,7 @@
                     <button type="submit" name="choosetagbtn">Tag it!</button>
 
                 </div>
+            </form>
         </div>
     </div>
     <div class="container p-0" contenteditable="true">
@@ -76,9 +80,7 @@
                 if (isset($pageDescription)) {
                     echo $pageDescription;
                 }
-            }
-
-            ?>
+            } ?>
         </p>
         <p id="Content" class="musthover my-auto w-100 " style="height: 556px;">
             <?php
@@ -87,16 +89,20 @@
                     echo $pageContent;
                 }
             }
-            ?>
-        </p>
+            ?></p>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                console.log("Waited 3 seconds!");
+            }, 3000);
 
 
 
 
-            setInterval(() => AutoSave(), 3000);
+            setInterval(() => {
+                if (autosaveEnabled) AutoSave();
+            }, 7000);
 
 
             async function AutoSave() {
@@ -106,12 +112,17 @@
                 var title = document.querySelector("#Title");
                 var description = document.querySelector("#Description");
                 var content = document.querySelector("#Content");
-                const resp = {
-                    "title": title.textContent,
-                    "description": description.textContent,
-                    "content": content.textContent,
-
+                if (!title.textContent.trim() && !description.textContent.trim() && !content.textContent.trim()) {
+                    console.log("Skipping autosave due to empty content");
+                    return;
                 }
+
+                // const resp = {
+                //     "title": title.textContent,
+                //     "description": description.textContent,
+                //     "content": content.textContent,
+
+                // }
                 // console.log(resp)
                 // console.log("AUTOSAAVE")
                 //         foreach ($toppings as $topping) {
@@ -121,9 +132,9 @@
                 const response = await fetch("pages/autosave.php", {
                     method: "POST",
                     body: JSON.stringify({
-                        "title": title.textContent,
-                        "description": description.textContent,
-                        "content": content.textContent,
+                        "title": title.textContent.trim(),
+                        "description": description.textContent.trim(),
+                        "content": content.textContent.trim(),
                         "id": name
                     }),
                     headers: {
@@ -133,7 +144,7 @@
                     },
 
                 }).then(response => response.json());
-                console.log(response)
+                // console.log(response)
 
 
 
