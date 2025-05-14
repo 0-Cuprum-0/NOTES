@@ -19,66 +19,74 @@
 
     $s = mysqli_fetch_array($aa);
     $_SESSION['tag_count'] = $s[0];
-
-
-
+    $_SESSION['tag_left'] = 5 - $_SESSION['tag_count'];
+    echo $_SESSION['tag_left'];
+    if ($_SESSION['tag_left'] > 0) {
 
     ?>
 
 
-    <div class="container p-0" style="margin-top: 30px;">
-        <h3 class="p-0 my-auto">Tags</h3>
-        <form action="index.php?page=3" class="p-0" id="myForm" method="POST">
-            <div class="form-group p-0">
-                <p class="mt-2">Name new tag:</p>
-                <input type="text" class="form-input  w-25" name="tag_name">
-                <div class="form-check  p-0 my-3">
-                    <div class="radio_block">
-                        <input type="radio" name="color" id="radio_red" value="#A54441" style="accent-color: #A54441;" checked />
-                        <label for="radio_red">Red</label>
+        <div class="container p-0" style="margin-top: 30px;">
+            <h3 class="p-0 my-auto">Tags</h3>
+            <form action="index.php?page=3" class="p-0" id="myForm" method="POST">
+                <div class="form-group p-0">
+                    <p class="mt-2">Name new tag:</p>
+                    <input type="text" class="form-input  w-25" name="tag_name">
+                    <div class="form-check  p-0 my-3">
+                        <div class="radio_block">
+                            <input type="radio" name="color" id="radio_red" value="#A54441" style="accent-color: #A54441;" checked />
+                            <label for="radio_red">Red</label>
+                        </div>
+                        <div class="radio_block">
+                            <input type="radio" name="color" id="radio_pink" value="#BF8E8D" style="accent-color: #BF8E8D;" />
+                            <label for="radio_pink">Pink</label>
+                        </div>
+                        <div class="radio_block">
+                            <input type="radio" name="color" id="radio_orange" value="#AE9064" style="accent-color: #AE9064;" />
+                            <label for="radio_orange">Orange</label>
+                        </div>
+                        <div class="radio_block">
+                            <input type="radio" name="color" id="radio_light_blue" value="#7CAFC2" style="accent-color: #7CAFC2;" />
+                            <label for="radio_light_blue">Light-blue</label>
+                        </div>
+                        <div class="radio_block">
+                            <input type="radio" name="color" id="radio_mint" value="#1ABB9B" style="accent-color: #1ABB9B;" />
+                            <label for="radio_mint">Mint</label>
+                        </div>
                     </div>
-                    <div class="radio_block">
-                        <input type="radio" name="color" id="radio_pink" value="#BF8E8D" style="accent-color: #BF8E8D;" />
-                        <label for="radio_pink">Pink</label>
-                    </div>
-                    <div class="radio_block">
-                        <input type="radio" name="color" id="radio_orange" value="#AE9064" style="accent-color: #AE9064;" />
-                        <label for="radio_orange">Orange</label>
-                    </div>
-                    <div class="radio_block">
-                        <input type="radio" name="color" id="radio_light_blue" value="#7CAFC2" style="accent-color: #7CAFC2;" />
-                        <label for="radio_light_blue">Light-blue</label>
-                    </div>
-                    <div class="radio_block">
-                        <input type="radio" name="color" id="radio_mint" value="#1ABB9B" style="accent-color: #1ABB9B;" />
-                        <label for="radio_mint">Mint</label>
-                    </div>
+                    <button type="submit" class="button" name="tagbtn">Create</button>
                 </div>
-                <button type="submit" class="button" name="tagbtn">Create</button>
-            </div>
-        </form>
-        <h3 class="p-0 my-auto">Your tags</h3>
+            </form>
+            <h3 class="p-0 my-1">Your tags</h3>
 
         <?php
+    } else {
+        echo '<h4 class="p-0 m-0">You have reached your limit for tags</h4>';
+    }
 
 
-        $link = connect();
 
-        // $colors = array("#A54441", "#BF8E8D", "#AE9064", "#7CAFC2", "#1ABB9B");
-        $color = "";
-        if (isset($_POST['tagbtn'])) {
-            if (isset($_POST)) {
-                $color = $_POST['color'];
-                $req = 'INSERT INTO tags (name,user_id,color)
+
+
+
+    $link = connect();
+
+    // $colors = array("#A54441", "#BF8E8D", "#AE9064", "#7CAFC2", "#1ABB9B");
+    $color = "";
+    if (isset($_POST['tagbtn'])) {
+        if (isset($_POST)) {
+            $color = $_POST['color'];
+            $req = 'INSERT INTO tags (name,user_id,color)
                 VALUES ("' . $_POST['tag_name'] . '","' . $_SESSION['id'] . '","' . $color . '")';
-                $res = mysqli_query($link, $req);
-            } else {
-                echo '<h1>Dont forget to name your tag!<h1>';
-            }
-        } ?>
+            $res = mysqli_query($link, $req);
+        } else {
+            echo '<h1>Dont forget to name your tag!<h1>';
+        }
+    } ?>
         <p>You cant have more than 5 tags.</p>
         <p>You have <?php echo 5 - $_SESSION['tag_count']; ?> tags left</p>
         <?php
+
         $req = 'SELECT * FROM tags WHERE user_id="' . $_SESSION['id'] . '"';
         $res = mysqli_query($link, $req);
         while ($row = mysqli_fetch_array($res, MYSQLI_BOTH)) {
@@ -181,7 +189,7 @@
 
 
         ?>
-    </div>
+        </div>
 
 </body>
 
