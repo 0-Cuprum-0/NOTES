@@ -16,10 +16,41 @@
     </script>
 
     <?php
+    $_SESSION['temp_note_id'] = $_GET['note_id'];
     error_reporting(E_ALL);
     ini_set('display_errors', 'On');
+    $note_id = $_SESSION['temp_note_id'];
+    if (isset($_POST['choosetagbtn'])) {
+        $note_id = $_GET['note_id'];
+        if (isset($_POST['color'])) {
+            $note_id = $_SESSION['temp_note_id'];
+            $tagText = $_POST['color'];
+            $req = 'UPDATE pages SET tag = "' . $tagText . '" WHERE  id ="' . $note_id . '"';
+            $rel = mysqli_query($link, $req);
+            header("Location: index.php?page=$page&note_id=$note_id");
+            exit();
+        }
+        if ($_POST['color'] == "") {
+            // echo "NOOOOOOOOOOOOOOOOOOOO";
+
     ?>
-    <form action="index.php?page=<?= $page ?>&note_id=<?= $_GET['note_id'] ?>" method="POST" class="input-group">
+            <script>
+                console.log("YOU WONT PASS!!")
+
+                Swal.fire({
+                    title: 'Tag is missing',
+                    text: 'Choose tag before submitting!',
+                    icon: 'error',
+                    confirmButtonText: 'Cancel'
+                })
+            </script>
+    <?php
+        }
+    }
+
+    ?>
+
+    <form method="POST" class="input-group" action="index.php?page=<?= $page ?>&note_id=<?= $_GET['note_id'] ?>">
         <div class="top_menu p-0 m-0" style="width: 100px;height:100px; ">
             <select name="color">
 
@@ -40,32 +71,8 @@
             <?php
 
             // echo $l;
-            $note_id = $_GET['note_id'];
-            if (isset($_POST['choosetagbtn'])) {
-                if (isset($_POST['color'])) {
-                    $tagText = $_POST['color'];
-                    $req = 'UPDATE pages SET tag = "' . $tagText . '" WHERE  id ="' . $note_id . '"';
-                    $rel = mysqli_query($link, $req);
-                    header("Location: index.php?page=$page&note_id=$note_id");
-                    exit();
-                }
-                if ($_POST['color'] == "") {
-                    // echo "NOOOOOOOOOOOOOOOOOOOO";
 
-            ?>
-                    <script>
-                        console.log("YOU WONT PASS!!")
-
-                        Swal.fire({
-                            title: 'Tag is missing',
-                            text: 'Choose tag before submitting!',
-                            icon: 'error',
-                            confirmButtonText: 'Cancel'
-                        })
-                    </script>
-            <?php
-                }
-            }
+            unset($_SESSION['temp_note_id']);
             ?>
 
         </div>

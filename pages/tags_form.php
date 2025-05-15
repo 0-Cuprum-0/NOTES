@@ -20,7 +20,7 @@
     $s = mysqli_fetch_array($aa);
     $_SESSION['tag_count'] = $s[0];
     $_SESSION['tag_left'] = 5 - $_SESSION['tag_count'];
-    echo $_SESSION['tag_left'];
+    // echo $_SESSION['tag_left'];
     if ($_SESSION['tag_left'] > 0) {
 
     ?>

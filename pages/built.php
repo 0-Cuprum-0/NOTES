@@ -62,17 +62,22 @@
         #-----------------------TAGS-----------------------------#
         $color = isset($tag_color) ? $tag_color : 'rgb(59, 59, 59)';
         // echo $color;
+        // echo $i;
 
 
     ?>
         <script>
-            colors["<? echo $i ?>"] = "<? echo $color ?>";
-            console.log(colors["<? echo $i ?>"])
+            colors.push("<?php echo $color; ?>")
+            // colors["<? echo $i ?>"] = "<? echo $color ?>";
+            console.log(JSON.stringify(colors, null, "  "))
+        </script>
+        <script>
+            document.querySelector(':root').style.setProperty('--color', colors["<?php echo $i; ?>"]);
         </script>
 
 
         <style>
-            :root {
+            /* :root {
                 --color: rgb(255, 0, 0);
 
             }
@@ -81,8 +86,9 @@
 
             .tag_text {
                 color: var(--color);
-            }
+            } */
         </style>
+
 
         <div class="my_card">
             <div class="card-body" style="h-100 w-100" data-number="<?= $id ?>"><!--onclick="loadNote(this)" убрано -->
@@ -91,11 +97,11 @@
                                                             // echo "...";
                                                             // echo $id; 
                                                             ?></p>
-                <p class="tag_text" style="height:10px;"><?php if ($tag_name !== null) { // the record was found and can be worked with
-                                                                echo $tag_name['name'];
-                                                            };
+                <p class="tag_text" style="height:10px;color: <?= $color ?>"><?php if ($tag_name !== null) { // the record was found and can be worked with
+                                                                                    echo $tag_name['name'];
+                                                                                };
 
-                                                            ?></p>
+                                                                                ?></p>
 
 
             </div>
