@@ -93,8 +93,16 @@ if (!isset($_POST['newbtn'])) {
 
 
 <?php
-} else {
+}
+if (isset($_POST['newbtn'])) {
+    echo "AAAAAAAAAAAAAAAAA";
+?>
+    <script>
+        console.log("Clicked confirm")
+    </script>
+<?php
     if (isset($_POST['pass']) && isset($_POST['newlog']) && !isset($_POST['newpass'])) {
+
         if (newlogin($_POST['pass'], $_POST['newlog'])) {
             header('Location: index.php?page=3');
             echo "<h3><span style='color: green;'>You've changed your login!</span></h3>";

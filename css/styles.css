@@ -81,6 +81,14 @@ button:hover {
   outline: none;
 }
 
+.side_form{
+  text-align: left;
+  display: flex;
+  justify-content: left;
+}
+.top_menu{
+  display: flex;
+}
 
 
 

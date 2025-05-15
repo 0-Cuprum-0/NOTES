@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link href="../css/styles.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Side</title>
 </head>
 
 <body>
@@ -50,8 +50,8 @@
 
     ?>
 
-    <form method="POST" class="input-group" action="index.php?page=<?= $page ?>&note_id=<?= $_GET['note_id'] ?>">
-        <div class="top_menu p-0 m-0" style="width: 100px;height:100px; ">
+    <form method="POST" class="side_form" action="index.php?page=<?= $page ?>&note_id=<?= $_GET['note_id'] ?>">
+        <div class="top_menu p-0 m-0 d-flex" style="width: 100px;height:100px; ">
             <select name="color">
 
                 <option value="">Tag</option>
@@ -67,7 +67,7 @@
                 ?>
             </select>
 
-            <button type="submit" class="my-3" name="choosetagbtn">Tag it!</button>
+            <button type="submit" name="choosetagbtn">Tag it!</button>
             <?php
 
             // echo $l;
