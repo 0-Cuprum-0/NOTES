@@ -22,17 +22,17 @@
     ?>
         <form action="index.php?page=2" method="POST">
             <div class="form-group">
-                <label class="form-label" for="login">Login:</label>
-                <input type="text" class="form-control" name="login">
+                <label for="login" style="margin-right:28px">Login:</label>
+                <input type="text" class="form-input" class="form-input" name="login" style="height: 39px; width: 170px; margin:10px">
             </div>
             <div class="form-group">
-                <label class="form-label" for="pass">Password:</label>
-                <input type="password" class="form-control" name="pass">
+                <label for="pass">Password:</label>
+                <input type="password" name="pass" class="form-input" style="height: 39px;width: 170px; margin:10px">
             </div>
 
 
-            <button type="submit" class="btn btn-outline-info" name="logbtn">Login</button>
-            <a href="index.php?page=1">I am not registered!</a>
+            <button type="submit" class="button" name="logbtn" style="width: 65;">Login</button>
+            <a href="index.php?page=1" class="button">I am not registered!</a>
 
         </form>
     <?php

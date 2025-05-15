@@ -7,6 +7,9 @@
     <link href="../css/styles.css" rel="stylesheet">
     <title>Document</title>
 </head>
+<script>
+    var colors = [];
+</script>
 
 <body>
     <?php
@@ -58,9 +61,15 @@
 
         #-----------------------TAGS-----------------------------#
         $color = isset($tag_color) ? $tag_color : 'rgb(59, 59, 59)';
+        // echo $color;
 
 
     ?>
+        <script>
+            colors["<? echo $i ?>"] = "<? echo $color ?>";
+            console.log(colors["<? echo $i ?>"])
+        </script>
+
 
         <style>
             :root {

@@ -21,23 +21,23 @@
     ?>
         <form action="index.php?page=1" method="POST">
             <div class="form-group">
-                <label class="form-label" for="login">Login:</label>
-                <input type="text" class="form-control" name="login">
+                <label class="form-label" for="login" style="margin-right:28px">Login:</label>
+                <input type="text" class="form-input" name="login" style="height: 39px; width: 170px; margin:10px">
             </div>
             <div class="form-group">
                 <label class="form-label" for="pass1">Password:</label>
-                <input type="password" class="form-control" name="pass1">
+                <input type="password" class="form-input" name="pass1" style="height: 39px; width: 170px; margin:10px">
             </div>
             <div class="form-group">
-                <label class="form-label" for="pass2">Confirm password:</label>
-                <input type="password" class="form-control" name="pass2">
+                <label class="form-label" for="pass2" style="margin-right:10px">Confirm:</label>
+                <input type="password" class="form-input" name="pass2" style="height: 39px; width: 170px; margin:10px">
             </div>
-            <div class="form-group">
-                <label class="form-label" for="email">E-mail address:</label>
-                <input type="email" class="form-control" name="email">
+            <div class="form-group" style="height:59px; width:1309px;">
+                <label class="form-label" for="email" style="margin-right:20px">E-mail:</label>
+                <input type="email" class="form-input" name="email" style="height: 39px; width: 170px; margin:10px">
             </div>
-            <button type="submit" class="btn btn-outline-info" name="regbtn">Register</button>
-            <a href="index.php?page=2">I already have one!</a>
+            <button type="submit" class="button" name="regbtn">Register</button>
+            <a href="index.php?page=2" class="button">I already have one!</a>
 
         </form>
     <?php
