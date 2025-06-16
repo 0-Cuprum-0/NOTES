@@ -80,11 +80,11 @@ $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
 
 
             </div>
-            <div class="col-sm-10 d-flex pt-10 align-items-center justify-content-center " style="overflow-y: scroll;margin-left: 267px;">
+            <div class="col-sm-10 d-flex pt-10 align-items-center justify-content-center " style="margin-left: 267px;">
                 <div class="row w-100 h-100 m-20">
 
 
-                    <div class="container p-0">
+                    <div class="container p-0" style="overflow-x: scroll;">
                         <?php
                         if (isset($_GET['page'])) {
                             $page = $_GET['page'];

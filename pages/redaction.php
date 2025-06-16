@@ -15,12 +15,10 @@
     if (isset($_GET['page'])) {
         $page = $_GET['page'];
     }
-
-
     // $firstElement = $all[$count - 1];
     // $firstName = $firstElement[1];
     // $firstdescription = $firstElement[2];
-    if (isset($_GET['note_id'])) {
+    if (isset($_GET['note_id']) && $_GET['note_id'] != null) {
 
         $note_id = $_GET['note_id'];
         $rec = 'SELECT * FROM pages WHERE id = ' . $note_id;
@@ -32,13 +30,12 @@
             $pageContent = $note_info[3];
         }
     }
-
-
     ?>
-    <div class="w-100  p-0  d-flex m-0" style="height:100px;">
+    <div class="w-100  p-0  d-flex m-0" style="height:100px;position: sticky;
+top: 0;background: linear-gradient(#121212, rgba(0, 0, 0, 0));">
 
 
-        <h1 id="Title" contenteditable="true" class="musthover h-100" maxlength="25" style="padding-top: 27px; width: 75%;">
+        <h1 id="Title" contenteditable="true" class="musthover" maxlength="25" style="height:100%;padding-top: 27px; width: 75%;">
             <?php
             if (isset($note_id)) {
                 if (isset($pageName)) {
@@ -52,8 +49,6 @@
         <?php
         include_once("pages/side.php")
         ?>
-
-
     </div>
     <div class="container p-0" contenteditable="true">
         <p id="Description" class="musthover my-auto w-100 " style="height: 100px;" maxlength="100">
@@ -64,7 +59,7 @@
                 }
             } ?>
         </p>
-        <p id="Content" class="musthover my-auto w-100 " style="height: 556px;">
+        <p id="Content" spellcheck="false" class="musthover my-auto w-100 " style="height: 100%;overflow-wrap: break-word;">
             <?php
             if (isset($note_id)) {
                 if (isset($pageContent)) {
@@ -81,10 +76,6 @@
             setTimeout(() => {
                 console.log("Waited 3 seconds!");
             }, 3000);
-
-
-
-
             setInterval(() => {
                 if (autosaveEnabled) {
                     AutoSave();

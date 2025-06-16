@@ -20,7 +20,8 @@
     $rel = 'SELECT COUNT(*) FROM pages WHERE user_id ="' . $_SESSION['id'] . '" ';
     $number = mysqli_query($link, $rel);
     $s = mysqli_fetch_array($number);
-    $count = $s[0];
+    $count = $s[0] ?? null;
+
     $_SESSION['rem'] = $remaining =  $_SESSION['num'] - $count;
     // echo $_SESSION['rem'];
     ?>
@@ -44,7 +45,9 @@
                 array_push($indexes, $row);
                 // print_r($indexes);
             };
-            $_SESSION['last_note'] = $r = $indexes[$count - 1][0];
+            if (!empty($indexes)) {
+                $_SESSION['last_note'] = $r = $indexes[$count - 1][0];
+            }
             // print_r($r);
 
 
@@ -102,8 +105,9 @@
                         include_once('pages/search.php');
                     }
                 } else {
-
-                    include_once('pages/built.php');
+                    if ($count != null) {
+                        include_once('pages/built.php');
+                    }
                 }
 
                 ?>

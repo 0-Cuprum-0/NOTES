@@ -67,6 +67,7 @@ button, .button{
     font-style: normal;
     padding: 3px;
     font-size: 20px;
+    line-height: 0.8;
     /* box-shadow: 3px 3px 1px black; */
 
         }
@@ -88,6 +89,9 @@ button:hover {
 }
 .top_menu{
   display: flex;
+}
+select{
+  background-color: #a4a4a4;
 }
 
 

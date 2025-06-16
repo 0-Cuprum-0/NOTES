@@ -50,7 +50,7 @@
 
     ?>
     <div class="top_menu m-0 d-flex" style=" align-items:center;padding-top:27px;">
-        <form method="POST" class=" side_form" style="width: 100%;height:100%;" action="index.php?page=<?= $page ?>&note_id=<?= $_GET['note_id'] ?>">
+        <form method="POST" class=" side_form" style="width: 100%;height:60%;" action="index.php?page=<?= $page ?>&note_id=<?= $_GET['note_id'] ?>">
 
             <select style="width: 70%;" name=" color">
 
@@ -67,7 +67,8 @@
                 ?>
             </select>
 
-            <button type="submit" name="choosetagbtn" class="button">Tag note</button>
+
+            <button type="submit" style="width: 30%;" name="choosetagbtn" class="button">Tag</button>
             <?php
 
             // echo $l;
@@ -84,7 +85,7 @@
         <form method="POST" action="index.php?page=<?= $page ?>&note_id=<?= $_SESSION['last_note'] ?>">
             <div class="form-group">
                 <input type="hidden" name="delnote" value="1">
-                <button type="submit" class="button">Delete note</button>
+                <button type="submit" style="height:44px;" class="button">Delete</button>
             </div>
         </form>
         <?php
