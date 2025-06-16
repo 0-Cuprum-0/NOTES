@@ -22,15 +22,14 @@
     $note_id = $_SESSION['temp_note_id'];
     if (isset($_POST['choosetagbtn'])) {
         $note_id = $_GET['note_id'];
-        if (isset($_POST['color'])) {
+        if (!empty($_POST['color'])) {
             $note_id = $_SESSION['temp_note_id'];
             $tagText = $_POST['color'];
             $req = 'UPDATE pages SET tag = "' . $tagText . '" WHERE  id ="' . $note_id . '"';
             $rel = mysqli_query($link, $req);
             header("Location: index.php?page=$page&note_id=$note_id");
             exit();
-        }
-        if ($_POST['color'] == "") {
+        } else {
             // echo "NOOOOOOOOOOOOOOOOOOOO";
 
     ?>
@@ -41,6 +40,7 @@
                     title: 'Tag is missing',
                     text: 'Choose tag before submitting!',
                     icon: 'error',
+                    theme: 'dark',
                     confirmButtonText: 'Cancel'
                 })
             </script>
@@ -49,10 +49,10 @@
     }
 
     ?>
+    <div class="top_menu m-0 d-flex" style=" align-items:center;padding-top:27px;">
+        <form method="POST" class=" side_form" style="width: 100%;height:100%;" action="index.php?page=<?= $page ?>&note_id=<?= $_GET['note_id'] ?>">
 
-    <form method="POST" class="side_form" action="index.php?page=<?= $page ?>&note_id=<?= $_GET['note_id'] ?>">
-        <div class="top_menu p-0 m-0 d-flex" style="width: 100px;height:100px; ">
-            <select name="color">
+            <select style="width: 70%;" name=" color">
 
                 <option value="">Tag</option>
                 <?php
@@ -67,16 +67,56 @@
                 ?>
             </select>
 
-            <button type="submit" name="choosetagbtn">Tag it!</button>
+            <button type="submit" name="choosetagbtn" class="button">Tag note</button>
             <?php
 
             // echo $l;
 
             unset($_SESSION['temp_note_id']);
+
+
+
+
             ?>
 
-        </div>
-    </form>
+        </form>
+
+        <form method="POST" action="index.php?page=<?= $page ?>&note_id=<?= $_SESSION['last_note'] ?>">
+            <div class="form-group">
+                <input type="hidden" name="delnote" value="1">
+                <button type="submit" class="button">Delete note</button>
+            </div>
+        </form>
+        <?php
+
+        $link = connect();
+        $l = 'SELECT id FROM pages WHERE user_id ="' . $_SESSION['id'] . '" ';
+        $resullt = mysqli_query($link, $l);
+        $indexes = [];
+        while ($row = mysqli_fetch_array($resullt, MYSQLI_NUM)) {
+            array_push($indexes, $row[0]);
+        };
+        // print_r($indexes);
+        $needed = end($indexes);
+        if ($needed == $_GET['note_id']) {
+            $needed = prev($indexes);
+        }
+        // print_r($needed);
+        // http: //localhost/bitnami/NOTES/index.php?page=4?note_id=208
+        // http: //localhost/bitnami/NOTES/index.php?page=4&note_id=208
+
+
+        if (isset($_POST['delnote'])) {
+            $reqquest = 'DELETE FROM pages WHERE id ="' . $_GET['note_id'] . '"';
+            $rell = mysqli_query($link, $reqquest);
+            print_r("AAAAAAAAAAPAPPAAPPA");
+            header("Location: index.php?page=4&note_id=" . $needed);
+            exit();
+        }
+        // $last_note = $_GET['note_id'] - 1;
+
+        ?>
+    </div>
 
 </body>
 

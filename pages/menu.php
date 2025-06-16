@@ -44,7 +44,7 @@
                 array_push($indexes, $row);
                 // print_r($indexes);
             };
-            $r = $indexes[$count - 1][0];
+            $_SESSION['last_note'] = $r = $indexes[$count - 1][0];
             // print_r($r);
 
 

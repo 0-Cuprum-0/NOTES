@@ -38,7 +38,7 @@
     <div class="w-100  p-0  d-flex m-0" style="height:100px;">
 
 
-        <h1 id="Title" contenteditable="true" class="musthover h-100" maxlength="25" style="padding-top: 27px; width: 900px;">
+        <h1 id="Title" contenteditable="true" class="musthover h-100" maxlength="25" style="padding-top: 27px; width: 75%;">
             <?php
             if (isset($note_id)) {
                 if (isset($pageName)) {
