@@ -90,12 +90,12 @@ function login($name, $pass)
         return false;
     }
 }
-function newlogin($pass, $newlogin)
+function newlogin($oldpass, $newlogin)
 {
     echo "HELLO";
     $link = connect();
     $newname = trim(htmlspecialchars($newlogin));
-    $pass = trim(htmlspecialchars($pass));
+    $pass = trim(htmlspecialchars($oldpass));
     if ($newname == "" || $pass == "") {
         echo "<h3><span style='color:red;'>Fill All Required Fields</span></h3>";
         return false;

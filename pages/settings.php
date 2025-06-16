@@ -95,30 +95,28 @@ if (!isset($_POST['newbtn'])) {
 <?php
 }
 if (isset($_POST['newbtn'])) {
-    echo "AAAAAAAAAAAAAAAAA";
-?>
-    <script>
-        console.log("Clicked confirm")
-    </script>
-<?php
-    if (isset($_POST['pass']) && isset($_POST['newlog']) && !isset($_POST['newpass'])) {
+
+    // echo $_POST;
+
+    if (!empty($_POST['pass']) && !empty($_POST['newlog']) && empty($_POST['newpass'])) {
 
         if (newlogin($_POST['pass'], $_POST['newlog'])) {
-            header('Location: index.php?page=3');
-            echo "<h3><span style='color: green;'>You've changed your login!</span></h3>";
+
+            echo "<p><span style='color: green;'>You've changed your login!</span></p>";
             exit();
         }
     }
-    if (isset($_POST['pass']) && isset($_POST['newpass']) && !isset($_POST['newlog'])) {
+    if (!empty($_POST['pass']) && !empty($_POST['newpass']) && empty($_POST['newlog'])) {
         if (newpassword($_POST['pass'], $_POST['newpass'])) {
-            header('Location: index.php?page=3');
-            echo "<h3><span style='color: green;'>You've changed your password!</span></h3>";
+
+            echo "<p><span style='color: green;'>You've changed your password!</span></p>";
             exit();
         }
     }
-    if (isset($_POST['pass']) && isset($_POST['newpass']) && isset($_POST['newlog'])) {
-        header('Location: index.php?page=3');
-        echo "You cant change them both at one time";
+    if (!empty($_POST['pass']) && !empty($_POST['newpass']) && !empty($_POST['newlog'])) {
+
+
+        echo "<p><span style='color: green;'>You cant change them both at one time</span></p>";
         exit();
     }
 } ?>
