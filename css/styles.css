@@ -80,6 +80,13 @@ button:hover {
 }
 [contenteditable="true"]:focus {
   outline: none;
+
+}
+[contenteditable="true"] {
+ 
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .side_form{

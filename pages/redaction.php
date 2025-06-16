@@ -69,6 +69,13 @@ top: 0;background: linear-gradient(#121212, rgba(0, 0, 0, 0));">
             ?></p>
     </div>
     <script>
+        // REMOVE FORMATTING------------------------------------------------
+        document.querySelector('div[contenteditable="true"]').addEventListener("paste", function(e) {
+            e.preventDefault();
+            var text = e.clipboardData.getData("text/plain");
+            document.execCommand("insertHTML", false, text);
+        });
+        // -----------------------------------------------------------------------
         document.addEventListener("DOMContentLoaded", () => {
             console.log("LOADED")
 
