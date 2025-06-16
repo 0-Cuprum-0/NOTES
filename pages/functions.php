@@ -17,14 +17,14 @@ function register($name, $pass, $email)
     $pass = trim(htmlspecialchars($pass));
     $email = trim(htmlspecialchars($email));
     if ($name == "" || $pass == "" || $email == "") {
-        echo "<h3><span style='color: red;'>Fill All Required Fields</span></h3>";
+        echo "<p><span style='color: red;'>Fill All Required Fields</span></p>";
         return false;
     }
     if (
         strlen($name) < 3 || strlen($name) > 30 ||
         strlen($pass) < 3  || strlen($name) > 30
     ) {
-        echo "<h3><span style='color: red;'>Values length error</span></h3>";
+        echo "<p><span style='color: red;'>Values length error</span></p>";
         return false;
     }
     $ins = 'INSERT INTO users (login, pass, email)
@@ -37,18 +37,18 @@ function register($name, $pass, $email)
         $errno = $e->getCode();
 
         if ($errno == 1062) {
-            echo "<h3><span style='color: red;'></span></h3>"; #??????????????????
+            echo "<p><span style='color: red;'></span></p>"; #??????????????????
         } else {
-            echo "<h3><span style='color: red;'>Error code: " . $errno . "!</span></h3>";
+            echo "<p><span style='color: red;'>Error code: " . $errno . "!</span></p>";
         }
     }
 
     $err = mysqli_errno($link);
     if ($err) {
         if ($err == 1062) {
-            echo "<h3><span style='color: red;'>User already exists!</span></h3>";
+            echo "<p><span style='color: red;'>User already exists!</span></p>";
         } else {
-            echo "<h3><span style='color: red;'>Error code: " . $err . "!</span></h3>";
+            echo "<p><span style='color: red;'>Error code: " . $err . "!</span></p>";
         }
         return false;
     }
@@ -60,14 +60,14 @@ function login($name, $pass)
     $name = trim(htmlspecialchars($name));
     $pass = trim(htmlspecialchars($pass));
     if ($name == "" || $pass == "") {
-        echo "<h3><span style='color:red;'>Fill All Required Fields</span></h3>";
+        echo "<p><span style='color:red;'>Fill All Required Fields</span></p>";
         return false;
     }
     if (
         strlen($name) < 5 || strlen($name) > 15 ||
         strlen($pass) < 5 || strlen($pass) > 15
     ) {
-        echo "<h3><span style='color:red;'>Value Must Be Between 5 and 15!</span></h3>";
+        echo "<p><span style='color:red;'>Value Must Be Between 5 and 15!</span></p>";
         return false;
     }
     $sel = 'SELECT * FROM users 
@@ -86,25 +86,25 @@ function login($name, $pass)
 
         return true;
     } else {
-        echo "<h3><span style='color: red;'>No Such User!</span></h3>";
+        echo "<p><span style='color: red;'>No Such User!</span></p>";
         return false;
     }
 }
 function newlogin($oldpass, $newlogin)
 {
-    echo "HELLO";
+    // echo "HELLO";
     $link = connect();
     $newname = trim(htmlspecialchars($newlogin));
     $pass = trim(htmlspecialchars($oldpass));
     if ($newname == "" || $pass == "") {
-        echo "<h3><span style='color:red;'>Fill All Required Fields</span></h3>";
+        echo "<p><span style='color:red;'>Fill All Required Fields</span></p>";
         return false;
     }
     if (
         strlen($newname) < 5 || strlen($newname) > 15 ||
         strlen($pass) < 5 || strlen($pass) > 15
     ) {
-        echo "<h3><span style='color:red;'>Value Must Be Between 5 and 15!</span></h3>";
+        echo "<p><span style='color:red;'>Value Must Be Between 5 and 15!</span></p>";
         return false;
     }
     $sel = 'SELECT * FROM users 
@@ -141,7 +141,7 @@ function newlogin($oldpass, $newlogin)
 
 
     // } else {
-    //     echo "<h3><span style='color: red;'>No Such User!</span></h3>";
+    //     echo "<p><span style='color: red;'>No Such User!</span></p>";
     //     return false;
     // }
 }
@@ -151,14 +151,14 @@ function newpassword($pass, $newpass)
     $newname = trim(htmlspecialchars($newpass));
     $pass = trim(htmlspecialchars($pass));
     if ($newname == "" || $pass == "") {
-        echo "<h3><span style='color:red;'>Fill All Required Fields</span></h3>";
+        echo "<p><span style='color:red;'>Fill All Required Fields</span></p>";
         return false;
     }
     if (
         strlen($newname) < 5 || strlen($newname) > 15 ||
         strlen($pass) < 5 || strlen($pass) > 15
     ) {
-        echo "<h3><span style='color:red;'>Value Must Be Between 5 and 15!</span></h3>";
+        echo "<p><span style='color:red;'>Value Must Be Between 5 and 15!</span></p>";
         return false;
     }
 
@@ -218,6 +218,14 @@ class Note
             WHERE page_name="' . $this->title . '"';
             $res = mysqli_query($link, $sel);
         }
+        $link = connect();
+        $rel = 'SELECT id FROM pages WHERE page_name="' . $this->title . '"';
+        $smth = mysqli_query($link, $rel);
+        if ($row = mysqli_fetch_assoc($smth)) {
+            $new_id = $row["id"];
+            print_r($new_id);
+        }
+        header("Location: index.php?page=4&note_id=" . $new_id);
     }
 }
 

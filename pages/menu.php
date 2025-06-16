@@ -36,6 +36,20 @@
 
 
             <?php
+            $link = connect();
+            $l = 'SELECT id FROM pages WHERE user_id ="' . $_SESSION['id'] . '" ';
+            $resullt = mysqli_query($link, $l);
+            $indexes = [];
+            while ($row = mysqli_fetch_array($resullt, MYSQLI_NUM)) {
+                array_push($indexes, $row);
+                // print_r($indexes);
+            };
+            $r = $indexes[$count - 1][0];
+            // print_r($r);
+
+
+
+
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
             }
@@ -50,7 +64,7 @@
                     if ($_SESSION['rem'] > 0) {
                         $note = new Note($_POST['title']);
                         $note->create_note($_POST['title'], $_POST['descr']);
-                        header("Location: index.php?page=4");
+                        // header("Location: index.php?page=4&note_id=" . $r);
                     } else {
                         // echo "NOOOOOOOOOOOOOOOOOOOO";
 
