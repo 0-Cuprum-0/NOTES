@@ -92,7 +92,7 @@ if (!isset($_POST['newbtn'])) {
     </form>
 
 
-<?php
+    <?php
 }
 if (isset($_POST['newbtn'])) {
 
@@ -101,22 +101,95 @@ if (isset($_POST['newbtn'])) {
     if (!empty($_POST['pass']) && !empty($_POST['newlog']) && empty($_POST['newpass'])) {
 
         if (newlogin($_POST['pass'], $_POST['newlog'])) {
+    ?>
+            <script>
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your login has been updated",
+                    theme: 'dark',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
 
-            echo "<p><span style='color: green;'>You've changed your login!</span></p>";
+                setTimeout(() => {
+                    window.location.href = "index.php?page=3";
+                }, 1500);
+            </script>
+        <?php
+
+            // header('Location: index.php?page=3');
             exit();
         }
     }
     if (!empty($_POST['pass']) && !empty($_POST['newpass']) && empty($_POST['newlog'])) {
         if (newpassword($_POST['pass'], $_POST['newpass'])) {
 
-            echo "<p><span style='color: green;'>You've changed your password!</span></p>";
+        ?>
+            <script>
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your password has been updated",
+                    theme: 'dark',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+                setTimeout(() => {
+                    window.location.href = "index.php?page=3";
+                }, 1500);
+            </script>
+        <?php
+
+            // header('Location: index.php?page=3');
             exit();
         }
+    }
+    if (empty($_POST['pass']) && empty($_POST['newpass']) && empty($_POST['newlog'])) {
+
+
+        ?>
+        <script>
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "Fill the form!",
+                theme: 'dark',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            setTimeout(() => {
+                window.location.href = "index.php?page=3";
+            }, 1500);
+        </script>
+    <?php
+
+        // header('Location: index.php?page=3');
+        exit();
     }
     if (!empty($_POST['pass']) && !empty($_POST['newpass']) && !empty($_POST['newlog'])) {
 
 
-        echo "<p><span style='color: green;'>You cant change them both at one time</span></p>";
+    ?>
+        <script>
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "You cant change them all in one time!",
+                theme: 'dark',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            setTimeout(() => {
+                window.location.href = "index.php?page=3";
+            }, 1500);
+        </script>
+<?php
+
+        // header('Location: index.php?page=3');
         exit();
     }
 } ?>
