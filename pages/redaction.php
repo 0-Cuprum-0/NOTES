@@ -76,8 +76,10 @@ top: 0;background: linear-gradient(#121212, rgba(0, 0, 0, 0));">
             document.execCommand("insertHTML", false, text);
         });
         document.querySelector('div[contenteditable="true"]').addEventListener("keypress", function(e) {
-            e.preventDefault();
+
             if (e.key == 'Enter') {
+                e.preventDefault();
+
                 document.execCommand("insertHTML", false, '<br></br>');
             }
 

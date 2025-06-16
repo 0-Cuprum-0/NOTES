@@ -250,6 +250,7 @@ include_once("pages/tags_form.php");
 <style>
 
 </style>
+<p id="copyright">©Shrimpy 2025. Prodused for educational purpuses.</p>
 </body>
 
 </html>
