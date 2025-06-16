@@ -31,11 +31,11 @@
         }
     }
     ?>
-    <div class="w-100  p-0  d-flex m-0" style="height:100px;position: sticky;
+    <div class="w-100  p-0  d-flex m-0" id="sticky_top" style="height:100px;position: sticky;
 top: 0;background: linear-gradient(#121212, rgba(0, 0, 0, 0));">
 
 
-        <h1 id="Title" contenteditable="true" class="musthover" maxlength="25" style="height:100%;padding-top: 27px; width: 75%;">
+        <h1 id="Title" contenteditable="true" maxlength="25" style="height:100%;padding-top: 27px; width: 75%;">
             <?php
             if (isset($note_id)) {
                 if (isset($pageName)) {

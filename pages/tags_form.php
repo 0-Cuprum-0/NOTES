@@ -167,7 +167,7 @@
             echo '</tr>';
         }
         echo '</table>';
-        echo '<button type="submit" name="delcountry" value="Delete" class="p-0 my-3"> Delete chosen tags!</button>';
+        echo '<button type="submit" name="delcountry" value="Delete" class="button p-0 mt-3"> Delete chosen tags!</button>';
 
         echo '</form>';
         if (isset($_GET['page'])) {

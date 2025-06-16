@@ -68,7 +68,7 @@
             </select>
 
 
-            <button type="submit" style="width: 30%;" name="choosetagbtn" class="button">Tag</button>
+            <button type="submit" style="width: 30%; height:100%" name="choosetagbtn" class="button">Tag</button>
             <?php
 
             // echo $l;
