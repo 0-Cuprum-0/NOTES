@@ -75,6 +75,13 @@ top: 0;background: linear-gradient(#121212, rgba(0, 0, 0, 0));">
             var text = e.clipboardData.getData("text/plain");
             document.execCommand("insertHTML", false, text);
         });
+        document.querySelector('div[contenteditable="true"]').addEventListener("keypress", function(e) {
+            e.preventDefault();
+            if (e.key == 'Enter') {
+                document.execCommand("insertHTML", false, '<br></br>');
+            }
+
+        });
         // -----------------------------------------------------------------------
         document.addEventListener("DOMContentLoaded", () => {
             console.log("LOADED")
